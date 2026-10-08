@@ -1,0 +1,34 @@
+{
+  "name": "builder-challenge",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host localhost --port 5173",
+    "web": "vite --host localhost --port 5173",
+    "open": "open http://localhost:5173",
+    "start": "vite --host localhost --port 5173",
+    "adk:web": "adk web adk_agents",
+    "adk:api": "adk api_server adk_agents",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "preview": "vite preview --host localhost --port 5173"
+  },
+  "dependencies": {
+    "@google/genai": "^2.27.0",
+    "@types/canvas-confetti": "^1.9.0",
+    "canvas-confetti": "^1.9.4",
+    "lucide-react": "^1.52.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "oxlint": "^1.81.0",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.0"
+  }
+}

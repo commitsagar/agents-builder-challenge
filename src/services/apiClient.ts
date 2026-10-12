@@ -19,7 +19,7 @@ export interface InventoryItem {
   reserved_quantity?: number;
   reorder_point?: number;
   store_id: string;
-  aisle_location: string;
+  aisle_location?: string;
   image_url: string;
   description: string;
   features?: string[];
@@ -41,6 +41,7 @@ export interface OrderRecord {
   bqPartitionDate?: string;
   bqJobId?: string;
   customer_id?: string;
+  orderedProducts?: Array<{ name: string; price: number; quantity?: number; image?: string }>;
 }
 
 export interface BigQueryCancelResult {

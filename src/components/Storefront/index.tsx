@@ -54,7 +54,7 @@ export const Storefront: React.FC<StorefrontProps> = ({
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
   // FlamIA: Flam Intelligence Assistant Product States
-  const [activeModalTab, setActiveModalTab] = useState<'flamIA' | 'authenticity' | 'store'>('flamIA');
+  const [activeModalTab, setActiveModalTab] = useState<'flamIA' | 'authenticity'>('flamIA');
   const [flamIAQuery, setFlamIAQuery] = useState('');
   const [isAskingFlamIA, setIsAskingFlamIA] = useState(false);
   const [flamIAHistory, setFlamIAHistory] = useState<Record<string, Array<{ question: string; answer: string; groundedFact?: string; confidence: number }>>>({});
@@ -359,11 +359,11 @@ export const Storefront: React.FC<StorefrontProps> = ({
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: '#fff7ed', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ea580c', flexShrink: 0 }}>
-                <Building2 size={17} />
+                <ShieldCheck size={17} />
               </div>
               <div>
-                <strong style={{ display: 'block', color: '#0f172a' }}>Real-Time Aisle Sync</strong>
-                <span style={{ color: '#64748b' }}>Accurate physical shelf inventory</span>
+                <strong style={{ display: 'block', color: '#0f172a' }}>100% Verified Catalog</strong>
+                <span style={{ color: '#64748b' }}>Guaranteed authentic products</span>
               </div>
             </div>
           </div>
@@ -408,7 +408,7 @@ export const Storefront: React.FC<StorefrontProps> = ({
               </span>
             </div>
             <p style={{ fontSize: '0.775rem', color: '#64748b', margin: '0.15rem 0 0' }}>
-              Fulfilling from <strong>{selectedStore.address}, {selectedStore.city}</strong> • All 500 products linked to real physical store aisles
+              Fulfilling from <strong>{selectedStore.address}, {selectedStore.city}</strong> • Over 500 premium catalog items available
             </p>
           </div>
         </div>
@@ -493,8 +493,8 @@ export const Storefront: React.FC<StorefrontProps> = ({
                     <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#334155', marginTop: '0.35rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block', width: '100%' }}>
                       {p.name}
                     </span>
-                    <span style={{ fontSize: '0.7rem', color: '#16a34a', fontWeight: 700 }}>
-                      ${p.price.toFixed(0)} • Aisle 4A
+                    <span style={{ fontSize: '0.75rem', color: '#16a34a', fontWeight: 700 }}>
+                      ${p.price.toFixed(2)}
                     </span>
                   </div>
                 ))}
@@ -550,8 +550,8 @@ export const Storefront: React.FC<StorefrontProps> = ({
                     <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#334155', marginTop: '0.35rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block', width: '100%' }}>
                       {p.name}
                     </span>
-                    <span style={{ fontSize: '0.7rem', color: '#16a34a', fontWeight: 700 }}>
-                      ${p.price.toFixed(0)} • Aisle 1B
+                    <span style={{ fontSize: '0.75rem', color: '#16a34a', fontWeight: 700 }}>
+                      ${p.price.toFixed(2)}
                     </span>
                   </div>
                 ))}
@@ -607,8 +607,8 @@ export const Storefront: React.FC<StorefrontProps> = ({
                     <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#334155', marginTop: '0.35rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block', width: '100%' }}>
                       {p.name}
                     </span>
-                    <span style={{ fontSize: '0.7rem', color: '#16a34a', fontWeight: 700 }}>
-                      ${p.price.toFixed(0)} • Aisle 6B
+                    <span style={{ fontSize: '0.75rem', color: '#16a34a', fontWeight: 700 }}>
+                      ${p.price.toFixed(2)}
                     </span>
                   </div>
                 ))}
@@ -664,8 +664,8 @@ export const Storefront: React.FC<StorefrontProps> = ({
                     <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#334155', marginTop: '0.35rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block', width: '100%' }}>
                       {p.name}
                     </span>
-                    <span style={{ fontSize: '0.7rem', color: '#16a34a', fontWeight: 700 }}>
-                      ${p.price.toFixed(0)} • Aisle 9B
+                    <span style={{ fontSize: '0.75rem', color: '#16a34a', fontWeight: 700 }}>
+                      ${p.price.toFixed(2)}
                     </span>
                   </div>
                 ))}
@@ -1262,28 +1262,6 @@ export const Storefront: React.FC<StorefrontProps> = ({
                   <span style={{ color: '#64748b' }}>({product.reviewsCount})</span>
                 </div>
 
-                {/* Physical Store Fulfillment Origin */}
-                <div style={{
-                  fontSize: '0.725rem',
-                  color: '#475569',
-                  marginBottom: '0.85rem',
-                  background: '#f8fafc',
-                  padding: '0.45rem 0.65rem',
-                  borderRadius: '6px',
-                  border: '1px solid #f1f5f9',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between'
-                }}>
-                  <span style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                    <Building2 size={13} color="#2563eb" />
-                    <span>Store #402 ({product.inStoreAisle || 'Aisle 3A'})</span>
-                  </span>
-                  <span style={{ color: '#16a34a', fontWeight: 700, fontSize: '0.7rem' }}>
-                    ✓ {product.stock} In Stock
-                  </span>
-                </div>
-
                 {/* Price & Add to Cart button */}
                 <div style={{ marginTop: 'auto', paddingTop: '0.85rem', borderTop: '1px solid #f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.75rem' }}>
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -1643,27 +1621,6 @@ export const Storefront: React.FC<StorefrontProps> = ({
                     <DoubleEdgeCloudTick size={16} />
                     <span>Verified User Reviews (Google Grounded)</span>
                   </button>
-
-                  <button
-                    onClick={() => setActiveModalTab('store')}
-                    style={{
-                      padding: '0.65rem 1rem',
-                      background: 'transparent',
-                      border: 'none',
-                      borderBottom: activeModalTab === 'store' ? '3px solid #16a34a' : '3px solid transparent',
-                      color: activeModalTab === 'store' ? '#16a34a' : '#64748b',
-                      fontWeight: 800,
-                      fontSize: '0.85rem',
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.4rem',
-                      marginBottom: '-2px'
-                    }}
-                  >
-                    <Building2 size={16} />
-                    <span>Store Aisle & Stock</span>
-                  </button>
                 </div>
 
                 {/* Tab 1: FlamIA (Flam Intelligence Assistant) */}
@@ -1982,45 +1939,6 @@ export const Storefront: React.FC<StorefrontProps> = ({
                   </div>
                 )}
 
-                {/* Tab 3: Store Aisle & Physical Stock */}
-                {activeModalTab === 'store' && (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                    <div style={{ background: '#eff6ff', border: '1px solid #bfdbfe', borderRadius: '12px', padding: '1.25rem' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.65rem' }}>
-                        <Building2 size={20} color="#2563eb" />
-                        <div>
-                          <strong style={{ fontSize: '1rem', color: '#1e3a8a' }}>{selectedStore.name}</strong>
-                          <p style={{ margin: 0, fontSize: '0.775rem', color: '#3b82f6' }}>{selectedStore.address}</p>
-                        </div>
-                      </div>
-
-                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '1rem', background: '#ffffff', padding: '0.85rem', borderRadius: '8px' }}>
-                        <div>
-                          <span style={{ fontSize: '0.7rem', color: '#64748b', textTransform: 'uppercase', fontWeight: 700 }}>In-Store Aisle</span>
-                          <p style={{ margin: '0.2rem 0 0', fontSize: '1rem', fontWeight: 800, color: '#0f172a' }}>
-                            {selectedProduct.inStoreAisle || 'Aisle 4B (Home Office)'}
-                          </p>
-                        </div>
-                        <div>
-                          <span style={{ fontSize: '0.7rem', color: '#64748b', textTransform: 'uppercase', fontWeight: 700 }}>Available Units</span>
-                          <p style={{ margin: '0.2rem 0 0', fontSize: '1rem', fontWeight: 800, color: '#16a34a' }}>
-                            ✓ {selectedProduct.stock} Units Ready
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '1rem' }}>
-                      <strong style={{ fontSize: '0.85rem', color: '#0f172a', display: 'block', marginBottom: '0.35rem' }}>
-                        Fulfillment Options
-                      </strong>
-                      <p style={{ margin: 0, fontSize: '0.8rem', color: '#64748b', lineHeight: 1.5 }}>
-                        • <strong>1-Hour Express Store Pickup:</strong> Ready at Customer Service Desk with mobile bar code.<br />
-                        • <strong>⚡ 2-Hour Courier Delivery:</strong> Dispatched from Store #402 fleet with live GPS telemetry.
-                      </p>
-                    </div>
-                  </div>
-                )}
 
               </div>
             </div>

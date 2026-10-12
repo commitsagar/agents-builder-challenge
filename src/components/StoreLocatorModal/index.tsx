@@ -216,7 +216,7 @@ export const StoreLocatorModal: React.FC<StoreLocatorModalProps> = ({
                       <Phone size={13} color="#0f172a" /> {store.phone}
                     </span>
                     <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', color: '#16a34a', fontWeight: 600 }}>
-                      <CheckCircle2 size={13} color="#16a34a" /> {store.inStockCount} of {store.totalCatalogCount} items in stock
+                      <CheckCircle2 size={13} color="#16a34a" /> Full Catalog Available
                     </span>
                   </div>
 

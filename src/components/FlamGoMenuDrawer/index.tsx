@@ -153,7 +153,7 @@ export const FlamGoMenuDrawer: React.FC<FlamGoMenuDrawerProps> = ({
               Conversational Solutions
             </span>
             <span style={{ fontSize: '0.65rem', background: '#eff6ff', color: '#1d4ed8', padding: '0.15rem 0.45rem', borderRadius: '4px', fontWeight: 700 }}>
-              B2C Persona
+              VIP Shopper
             </span>
           </div>
 
@@ -406,7 +406,7 @@ export const FlamGoMenuDrawer: React.FC<FlamGoMenuDrawerProps> = ({
           >
             <span style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
               <LogOut size={18} color="#ea580c" />
-              <span>Sign in / Switch Persona</span>
+              <span>Sign Out</span>
             </span>
             <ChevronRight size={15} color="#ea580c" />
           </button>

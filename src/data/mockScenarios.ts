@@ -1,4 +1,4 @@
-import { ReturnInspection, PhantomAnomaly, PlanogramAudit, DemandForecastPoint, UserProfile, GpsTelemetry, BasketAffinityRule, CustomerSegment } from '../types';
+import { ReturnInspection, UserProfile, GpsTelemetry } from '../types';
 
 export const B2C_PROFILE: UserProfile = {
   id: 'usr-b2c-901',
@@ -11,17 +11,6 @@ export const B2C_PROFILE: UserProfile = {
   points: 1450,
   address: '742 Evergreen Pike, Seattle, WA 98101',
   storeId: 'Store #402 (Seattle Flagship)'
-};
-
-export const B2B_PROFILE: UserProfile = {
-  id: 'usr-b2b-108',
-  name: 'Elena Rostova',
-  email: 'elena.rostova@omnicommerce.corp',
-  role: 'Regional Director of Supply Chain & Retail Ops',
-  persona: 'B2B',
-  avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80',
-  organization: 'OmniCommerce Enterprise Operations (Pacific Northwest)',
-  storeId: 'District 4 (18 Stores • Hub #402 Seattle)'
 };
 
 export const ORDER_GPS_DATABASE: { [key: string]: GpsTelemetry } = {
@@ -129,84 +118,6 @@ export const ORDER_GPS_DATABASE: { [key: string]: GpsTelemetry } = {
 
 export const MOCK_GPS_TELEMETRY: GpsTelemetry = ORDER_GPS_DATABASE['ORD-99482'];
 
-export const MOCK_BASKET_AFFINITY_RULES: BasketAffinityRule[] = [
-  {
-    antecedent: ['Nordic Oak Ergonomic Desk Chair'],
-    consequent: 'Solid Walnut Monitor Stand',
-    support: 0.38,
-    confidence: 0.74,
-    lift: 3.82,
-    revenueImpact: '+$42.5K / month (+18% attach rate)'
-  },
-  {
-    antecedent: ['ANC Wireless Studio Headphones'],
-    consequent: '65W GaN Dual USB-C Fast Charger',
-    support: 0.44,
-    confidence: 0.81,
-    lift: 4.15,
-    revenueImpact: '+$58.2K / month (+24% attach rate)'
-  },
-  {
-    antecedent: ['Precision Gooseneck Electric Kettle'],
-    consequent: 'Brushed Stainless Steel French Press',
-    support: 0.29,
-    confidence: 0.68,
-    lift: 3.40,
-    revenueImpact: '+$21.8K / month (+15% attach rate)'
-  },
-  {
-    antecedent: ['Ultra-Dense Eco Rubber Yoga Mat'],
-    consequent: 'Double-Wall Vacuum Insulated Bottle',
-    support: 0.52,
-    confidence: 0.87,
-    lift: 4.90,
-    revenueImpact: '+$64.1K / month (+29% attach rate)'
-  }
-];
-
-export const MOCK_CUSTOMER_SEGMENTS: CustomerSegment[] = [
-  {
-    id: 'SEG-001',
-    name: 'Omnichannel Champions (Top 5%)',
-    size: 14200,
-    percentOfRevenue: 41.5,
-    avgOrderValue: 284.50,
-    churnRisk: 'Low',
-    recommendedPlaybook: 'Instant VIP live video returns, early access to limited edition drops, personalized concierge.',
-    tags: ['High LTV', 'App + In-Store Shopper', 'Loyalty Tier Gold']
-  },
-  {
-    id: 'SEG-002',
-    name: 'Fast-Moving Digital Natives',
-    size: 48900,
-    percentOfRevenue: 27.2,
-    avgOrderValue: 92.10,
-    churnRisk: 'Medium',
-    recommendedPlaybook: 'Flash weekend bundle notifications, conversational RAG chat recommendations, 2-hr delivery alerts.',
-    tags: ['Mobile First', 'High Frequency', 'Price Elastic']
-  },
-  {
-    id: 'SEG-003',
-    name: 'Commercial & B2B Bulk Accounts',
-    size: 3120,
-    percentOfRevenue: 21.8,
-    avgOrderValue: 1450.00,
-    churnRisk: 'Low',
-    recommendedPlaybook: 'Volume tier discounts, scheduled pallet replenishment, dedicated account executive.',
-    tags: ['Office Furnishing', 'Credit Terms Net-30', 'Bulk Cartons']
-  },
-  {
-    id: 'SEG-004',
-    name: 'At-Risk / Lapsed Shoppers',
-    size: 19800,
-    percentOfRevenue: 9.5,
-    avgOrderValue: 64.00,
-    churnRisk: 'High',
-    recommendedPlaybook: 'Automated win-back dynamic credit ($15 coupon on abandoned high-affinity category).',
-    tags: ['Inactive >60d', 'Price Sensitive', 'High Return Probability']
-  }
-];
-
 export const MOCK_LIVE_CALL_SCENARIOS = [
   {
     id: 'CALL-001',
@@ -313,101 +224,6 @@ export const RETURN_INSPECTION_PRESETS: ReturnInspection[] = [
   }
 ];
 
-export const MOCK_PHANTOM_ANOMALIES: PhantomAnomaly[] = [
-  {
-    id: 'PHANTOM-401',
-    sku: 'prod-002',
-    productName: 'ANC Wireless Studio Headphones',
-    category: 'Electronics',
-    storeLocation: 'Flagship Store #402 (Downtown Seattle)',
-    erpLedgerStock: 14,
-    posSalesVelocity7d: 0,
-    predictedPhysicalStock: 0,
-    discrepancyDelta: 14,
-    phantomRiskScore: 94.6,
-    potentialLostRevenue: 2653.00,
-    recommendedAction: 'Trigger urgent associate handheld cycle count: Aisle 2A Bay 3. High theft susceptibility or misplaced backroom box.',
-    status: 'flagged'
-  },
-  {
-    id: 'PHANTOM-402',
-    sku: 'prod-010',
-    productName: '65W GaN Dual USB-C Fast Charger',
-    category: 'Electronics',
-    storeLocation: 'Store #218 (Bellevue Square)',
-    erpLedgerStock: 42,
-    posSalesVelocity7d: 1,
-    predictedPhysicalStock: 8,
-    discrepancyDelta: 34,
-    phantomRiskScore: 88.2,
-    potentialLostRevenue: 1359.66,
-    recommendedAction: 'Cycle-count locked showcase cabinet #2. Discrepancy between receiving dock scan and retail floor shelf.',
-    status: 'investigating'
-  },
-  {
-    id: 'PHANTOM-403',
-    sku: 'prod-004',
-    productName: 'Precision Gooseneck Electric Kettle',
-    category: 'Kitchen',
-    storeLocation: 'Store #056 (Tacoma Central)',
-    erpLedgerStock: 21,
-    posSalesVelocity7d: 1,
-    predictedPhysicalStock: 8,
-    discrepancyDelta: 13,
-    phantomRiskScore: 73.1,
-    potentialLostRevenue: 845.00,
-    recommendedAction: 'Verify top-stock riser location in Aisle 3A. Restock shelf display from secondary overstock bin.',
-    status: 'flagged'
-  }
-];
-
-export const MOCK_DEMAND_FORECAST: DemandForecastPoint[] = [
-  { date: 'Oct 01', historicalSales: 45, forecastedDemand: 45, upperConfidence: 52, lowerConfidence: 38, weatherFactor: 'Mild (68°F)' },
-  { date: 'Oct 02', historicalSales: 52, forecastedDemand: 50, upperConfidence: 58, lowerConfidence: 42, weatherFactor: 'Sunny (72°F)' },
-  { date: 'Oct 03', historicalSales: 61, forecastedDemand: 59, upperConfidence: 67, lowerConfidence: 51, weatherFactor: 'Rain (55°F)' },
-  { date: 'Oct 04', historicalSales: 58, forecastedDemand: 60, upperConfidence: 69, lowerConfidence: 51, weatherFactor: 'Rain (53°F)' },
-  { date: 'Oct 05', historicalSales: 74, forecastedDemand: 72, upperConfidence: 82, lowerConfidence: 62, weatherFactor: 'Cool (50°F)', eventFactor: 'Autumn Promo Launch' },
-  { date: 'Oct 06', historicalSales: 89, forecastedDemand: 86, upperConfidence: 98, lowerConfidence: 74, weatherFactor: 'Overcast (48°F)' },
-  { date: 'Oct 07', forecastedDemand: 95, upperConfidence: 110, lowerConfidence: 80, weatherFactor: 'Cold Front (42°F)', eventFactor: 'Weekend Peak' },
-  { date: 'Oct 08', forecastedDemand: 104, upperConfidence: 122, lowerConfidence: 86, weatherFactor: 'Rain & Wind (40°F)', eventFactor: 'Weekend Peak' },
-  { date: 'Oct 09', forecastedDemand: 82, upperConfidence: 96, lowerConfidence: 68, weatherFactor: 'Clear (45°F)' },
-  { date: 'Oct 10', forecastedDemand: 78, upperConfidence: 90, lowerConfidence: 66, weatherFactor: 'Clear (47°F)' },
-  { date: 'Oct 11', forecastedDemand: 85, upperConfidence: 99, lowerConfidence: 71, weatherFactor: 'Partly Cloudy' },
-  { date: 'Oct 12', forecastedDemand: 91, upperConfidence: 106, lowerConfidence: 76, weatherFactor: 'Mild' },
-  { date: 'Oct 13', forecastedDemand: 115, upperConfidence: 135, lowerConfidence: 95, weatherFactor: 'Chilly', eventFactor: 'Member VIP Flash Day' },
-  { date: 'Oct 14', forecastedDemand: 122, upperConfidence: 144, lowerConfidence: 100, weatherFactor: 'Rain', eventFactor: 'Weekend Surge' }
-];
-
-export const MOCK_PLANOGRAM_AUDIT: PlanogramAudit = {
-  id: 'PLANO-701',
-  aisle: 'Aisle 4B (Home Office & Ergonomics)',
-  bayNumber: 'Bay 02 - Shelves A through D',
-  imageUrl: 'https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&w=800&q=80',
-  totalFacings: 24,
-  outOfStockGaps: 3,
-  misplacedItems: 2,
-  compliancePercentage: 79.2,
-  detectedIssues: [
-    {
-      type: 'Stock Gap',
-      shelfLevel: 'Tier 2 (Eye-Level Prime)',
-      description: 'Nordic Oak Chair facing #2 empty. 3 adjacent units pushed forward to mask void.',
-      severity: 'High'
-    },
-    {
-      type: 'Misplaced SKU',
-      shelfLevel: 'Tier 3 (Lower Deck)',
-      description: 'Lumina Lamp carton placed in Chair cushion display slot.',
-      severity: 'Medium'
-    },
-    {
-      type: 'Missing Price Tag',
-      shelfLevel: 'Tier 1 (Top Riser)',
-      description: 'Electronic Shelf Label (ESL #04-88) unlinked or unpowered.',
-      severity: 'Low'
-    }
-  ]
-};
 
 export const MOCK_ORDERS = [
   {
@@ -420,7 +236,7 @@ export const MOCK_ORDERS = [
     trackingNumber: 'OMNI-GPS-99482-SEA',
     deliveryLocation: '742 Evergreen Pike, Seattle, WA',
     timeline: [
-      { step: 'Order Placed & Stock Reserved', time: 'Oct 03, 10:14 AM', done: true },
+      { step: 'Order Placed & Confirmed', time: 'Oct 03, 10:14 AM', done: true },
       { step: 'Fulfillment Center Pick & Pack', time: 'Oct 03, 11:30 AM', done: true },
       { step: 'Carrier Hub Scan (Seattle Hub #402)', time: 'Oct 03, 01:12 PM', done: true },
       { step: 'Out for Delivery (Marcus Vance - 0.8 mi away)', time: 'Today, 02:30 PM', done: true }
@@ -452,8 +268,8 @@ export const MOCK_ORDERS = [
     trackingNumber: 'TX-440-OMNI',
     deliveryLocation: '1100 Congress Ave, Austin, TX',
     timeline: [
-      { step: 'Order Verified & Stock Reserved', time: 'Oct 05, 11:00 AM', done: true },
-      { step: 'Aisle 4B Pick & Clean Pack', time: 'Oct 05, 11:45 AM', done: true },
+      { step: 'Order Verified & Confirmed', time: 'Oct 05, 11:00 AM', done: true },
+      { step: 'Item Inspection & Clean Pack', time: 'Oct 05, 11:45 AM', done: true },
       { step: 'En Route with Electric Fleet', time: 'Today, 12:20 PM', done: true }
     ]
   },

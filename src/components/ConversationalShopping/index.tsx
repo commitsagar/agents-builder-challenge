@@ -407,10 +407,6 @@ export const ConversationalShopping: React.FC<ConversationalShoppingProps> = ({ 
                     confidence={99.6}
                   />
                 </div>
-
-                <span className="badge badge-blue" style={{ position: 'absolute', bottom: '12px', left: '12px', fontSize: '0.675rem' }}>
-                  {product.inStoreAisle}
-                </span>
               </div>
 
               {/* Content Details */}
@@ -712,8 +708,6 @@ export const ConversationalShopping: React.FC<ConversationalShoppingProps> = ({ 
                 <div style={{ marginTop: '1rem', display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                   <span className="badge badge-purple">{selectedProduct.category}</span>
                   <span className="badge badge-blue">Elasticity: {selectedProduct.elasticity}</span>
-                  <span className="badge badge-green">In Stock: {selectedProduct.stock} units</span>
-                  <span className="badge badge-orange">{selectedProduct.inStoreAisle}</span>
                 </div>
 
                 <h2 style={{ fontSize: '1.35rem', margin: '1rem 0 0.4rem', fontWeight: 800 }}>{selectedProduct.name}</h2>

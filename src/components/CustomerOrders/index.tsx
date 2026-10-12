@@ -90,8 +90,8 @@ export const CustomerOrders: React.FC<CustomerOrdersProps> = ({
       trackingNumber: `FLAM-${newOrderId}-EXPRESS`,
       deliveryLocation: '742 Evergreen Pike, Seattle, WA 98101',
       timeline: [
-        { step: 'Order Placed & Stock Reserved', time: 'Just now', done: true },
-        { step: 'Aisle Reserved at Seattle Flagship', time: 'Just now', done: true },
+        { step: 'Order Placed & Confirmed', time: 'Just now', done: true },
+        { step: 'Prepared at Seattle Flagship', time: 'Just now', done: true },
         { step: 'In-Store Picking & Packing Complete', time: 'In Progress', done: true },
         { step: 'Courier Hand-off & Express 2-Hour Delivery', time: 'Estimated within 120 mins', done: false }
       ],
@@ -773,8 +773,8 @@ export const CustomerOrders: React.FC<CustomerOrdersProps> = ({
                       {/* Stepper Timeline */}
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', paddingLeft: '0.5rem', position: 'relative' }}>
                         {(order.timeline || [
-                          { step: 'Order Placed & Stock Reserved', time: 'Just now', done: true },
-                          { step: 'Aisle Reserved & Picked at Flagship Store', time: 'In Progress', done: true },
+                          { step: 'Order Placed & Confirmed', time: 'Just now', done: true },
+                          { step: 'Prepared & Picked at Flagship Store', time: 'In Progress', done: true },
                           { step: 'Courier Hand-off & Express 2-Hour Delivery', time: 'Estimated within 120 mins', done: false }
                         ]).map((step: any, idx: number) => {
                           const isCancelStep = step.step?.toLowerCase().includes('cancel');

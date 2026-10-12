@@ -1,5 +1,5 @@
 import { GoogleGenAI } from '@google/genai';
-import { IntentAnalysis, ReturnInspection, Product, PhantomAnomaly, AuthenticityPersonaReview, GroundedFact } from '../types';
+import { IntentAnalysis, ReturnInspection, Product, AuthenticityPersonaReview, GroundedFact } from '../types';
 import { MOCK_PRODUCTS } from '../data/mockCatalog';
 
 class GeminiRetailService {

@@ -42,7 +42,7 @@ export const VirtualAssistant: React.FC<VirtualAssistantProps> = ({
     {
       id: '1',
       sender: 'ai',
-      text: "👋 Hi there! I'm FlamGo AI, your personal shopping concierge powered by Gemini 3.7 Flash. I can help you discover items across all 10 departments, check physical aisle stock, or track orders. What are you looking for today?",
+      text: "👋 Hi there! I'm FlamGo AI, your personal shopping concierge powered by Gemini 3.7 Flash. I can help you discover items across all 10 departments, compare specifications, or track orders. What are you looking for today?",
       timestamp: 'Just now',
       thinkingTrace: 'Gemini 3.7 Flash initialized with 2,048 reasoning budget. Connected to Firestore inventory catalog & local store fulfillment hubs.'
     }
@@ -568,9 +568,6 @@ export const VirtualAssistant: React.FC<VirtualAssistantProps> = ({
                           <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.1rem' }}>
                             <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#1d4ed8' }}>
                               ${prod.price.toFixed(2)}
-                            </span>
-                            <span style={{ fontSize: '0.65rem', color: '#16a34a', fontWeight: 600 }}>
-                              • {prod.inStoreAisle || 'Aisle 3A'}
                             </span>
                           </div>
                         </div>

@@ -3,7 +3,7 @@ export interface Product {
   name: string;
   category: 'Furniture' | 'Apparel' | 'Electronics' | 'Kitchen' | 'Outdoor' | 'Fitness' | 'Home & Decor' | 'Beauty' | 'Gourmet' | 'Toys & Hobbies' | string;
   price: number;
-  originalPrice?: number;
+  originalPrice?: number | null;
   rating: number;
   reviewsCount: number;
   stock: number;

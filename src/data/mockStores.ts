@@ -35,7 +35,7 @@ export const MOCK_RETAIL_STORES: RetailStore[] = [
     hasPickup: true,
     hasExpressDelivery: true,
     deliveryTimeEstimate: '⚡ 2-Hour Courier Delivery',
-    pickupTimeEstimate: 'Ready in 1 hour • Aisle Desk',
+    pickupTimeEstimate: 'Ready in 1 hour • Store Pickup',
     badge: 'Nearest Store • Fast Fulfillment'
   },
   {

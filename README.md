@@ -46,18 +46,6 @@ FlamGo delivers purpose-built workflows tailored to both **B2C Consumer** and **
 
 ---
 
-### 🏢 B2B Persona: Elena Rostova (Procurement Director)
-* **📑 Use Case 05 — B2B Procurement & Conversational RFQ Automation:**
-  * Autonomous CPQ (Configure, Price, Quote) turning messy, unstructured RFQ emails and spreadsheets into binding quotes with dynamic tiered matrix pricing.
-* **📊 BigQuery & Looker Embedded Analytics:**
-  * Enterprise analytics dashboard monitoring order velocity, return rates by supplier, regional fulfillment heatmaps, and basket affinity.
-* **📡 Inventory Radar & Phantom Stock Detection:**
-  * Real-time anomaly detection identifying discrepant stock (on-shelf vs. system inventory) by cross-referencing Point-of-Sale velocities and shelf sensor telemetry.
-* **📐 Planogram Compliance Vision:**
-  * Computer vision compliance scanning verifying retail shelf placement against target planograms.
-
----
-
 ## 🏗️ System Architecture
 
 ```
@@ -157,13 +145,10 @@ agents-builder-challenge/
 ├── src/                       # React 19 Single Page Application
 │   ├── components/            # UI Components & Modular Views
 │   │   ├── ADKOrchestrator/   # Real-time multi-agent reasoning trace viewer
-│   │   ├── AuthGateway/       # Persona switch gateway (Alex Rivera / Elena Rostova)
-│   │   ├── BackOffice/        # Merchant operational control center
-│   │   ├── ConversationalCommerce/ # Chat concierge, Cart Recovery & RFQ Copilot
+│   │   ├── AuthGateway/       # Customer login gateway (Alex Rivera)
+│   │   ├── ConversationalCommerce/ # Chat concierge & Cart Recovery
 │   │   ├── GpsLiveTracker/    # Live shipment GPS tracker & route maps
 │   │   ├── LiveVideoReturn/   # Gemini Optical Vision Return Inspector
-│   │   ├── LookerAnalytics/   # Embedded retail intelligence dashboard
-│   │   ├── MerchantHub/       # Inventory, velocity, and stock management
 │   │   ├── Navbar.tsx         # Responsive header & use-case navigation
 │   │   └── Storefront/        # Interactive consumer shopping portal
 │   ├── data/                  # Mock scenarios, initial catalogs & store locations

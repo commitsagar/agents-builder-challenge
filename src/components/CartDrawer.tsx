@@ -59,8 +59,8 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
       trackingNumber: `FLAM-${newOrderId}-EXPRESS`,
       deliveryLocation: storeLocation,
       timeline: [
-        { step: 'Order Placed & Stock Reserved', time: 'Just now', done: true },
-        { step: `Aisle Reserved at ${storeLabel}`, time: 'Just now', done: true },
+        { step: 'Order Placed & Confirmed', time: 'Just now', done: true },
+        { step: `Order Prepared at ${storeLabel}`, time: 'Just now', done: true },
         { step: 'In-Store Picking & Packing Complete', time: 'In Progress', done: true },
         { step: 'Courier Hand-off & Express 2-Hour Delivery', time: 'Estimated within 120 mins', done: false }
       ],
@@ -199,7 +199,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                 textTransform: 'uppercase',
                 letterSpacing: '0.04em'
               }}>
-                Payment Authorized • Stock Reserved
+                Payment Authorized • Order Prepared
               </span>
               <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#0f172a', margin: '0.75rem 0 0.35rem' }}>
                 Thank You for Your Order!
@@ -298,7 +298,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                 <div>
                   <strong>Fulfilling from {selectedStore.name} ({selectedStore.storeNumber})</strong>
                   <div style={{ color: '#15803d', marginTop: '0.1rem' }}>
-                    {selectedStore.distanceMiles} mi away • Items reserved from physical store stock
+                    {selectedStore.distanceMiles} mi away • Fast direct local fulfillment
                   </div>
                 </div>
               </div>

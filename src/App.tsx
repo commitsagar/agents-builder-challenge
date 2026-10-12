@@ -6,22 +6,19 @@ import { GpsLiveTracker } from './components/GpsLiveTracker';
 import { LiveVideoReturn } from './components/LiveVideoReturn';
 import { CustomerReturns } from './components/CustomerReturns';
 import { CustomerOrders } from './components/CustomerOrders';
-import { MerchantHub } from './components/MerchantHub';
-import { LookerAnalytics } from './components/LookerAnalytics';
-import { ArchitectureGraph } from './components/ArchitectureGraph';
 import { ConversationalCommerce } from './components/ConversationalCommerce';
 import { CartDrawer } from './components/CartDrawer';
 import { SettingsModal } from './components/SettingsModal';
 import { StoreLocatorModal } from './components/StoreLocatorModal';
 import { Product, CartItem, IntentAnalysis, UserProfile } from './types';
-import { B2C_PROFILE, B2B_PROFILE } from './data/mockScenarios';
+import { B2C_PROFILE } from './data/mockScenarios';
 import { RetailStore, MOCK_RETAIL_STORES } from './data/mockStores';
 import { geminiRetailService } from './services/geminiService';
 import { ShieldCheck, Truck, RotateCcw, CreditCard, ChevronRight, X } from 'lucide-react';
 
 export function App() {
-  // Authentication State: null means at Auth Gateway, otherwise holds current UserProfile
-  const [currentPersona, setCurrentPersona] = useState<UserProfile | null>(null);
+  // Authentication State: defaults directly to Alex Rivera (B2C)
+  const [currentPersona, setCurrentPersona] = useState<UserProfile | null>(B2C_PROFILE);
   
   // Portal navigation
   const [activeView, setActiveView] = useState<string>('store');
@@ -34,13 +31,13 @@ export function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [intentResult, setIntentResult] = useState<IntentAnalysis | null>(null);
-  const [conversationalUseCase, setConversationalUseCase] = useState<'01' | '02' | '03' | '04' | '05'>('01');
+  const [conversationalUseCase, setConversationalUseCase] = useState<'01' | '02' | '03'>('01');
   const [activeSolutionModal, setActiveSolutionModal] = useState<'01' | '02' | '03' | null>(null);
   const [, setKeyVersion] = useState(0);
 
   const handleSelectPersona = (profile: UserProfile) => {
     setCurrentPersona(profile);
-    setActiveView(profile.persona === 'B2C' ? 'store' : 'merchant');
+    setActiveView('store');
   };
 
   const handleSwitchPersona = () => {
@@ -110,8 +107,6 @@ export function App() {
     return <AuthGateway onSelectPersona={handleSelectPersona} />;
   }
 
-  const isB2C = currentPersona.persona === 'B2C';
-
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: '#f8fafc' }}>
       
@@ -139,8 +134,8 @@ export function App() {
 
       {/* Main Persona Portal Body */}
       <main className="container-full" style={{ padding: '2rem 1.5rem', flexGrow: 1 }}>
-        {/* B2C Consumer Storefront */}
-        {isB2C && activeView === 'store' && (
+        {/* Storefront View */}
+        {activeView === 'store' && (
           <Storefront
             onAddToCart={handleAddToCart}
             searchQuery={searchQuery}
@@ -178,18 +173,8 @@ export function App() {
           <ConversationalCommerce
             onAddToCart={handleAddToCart}
             onNavigateView={(v) => setActiveView(v)}
-            isB2CPersona={isB2C}
             initialUseCase={conversationalUseCase}
           />
-        )}
-
-        {/* B2B Enterprise Operations Views */}
-        {!isB2C && (
-          <>
-            {activeView === 'merchant' && <MerchantHub />}
-            {activeView === 'looker' && <LookerAnalytics />}
-            {activeView === 'tech' && <ArchitectureGraph />}
-          </>
         )}
       </main>
 
@@ -229,8 +214,8 @@ export function App() {
                 <ShieldCheck size={20} />
               </div>
               <div>
-                <strong style={{ fontSize: '0.875rem', color: '#0f172a', display: 'block' }}>Real-Time Stock Sync</strong>
-                <span style={{ fontSize: '0.775rem', color: '#64748b' }}>Verified Multi-Store Inventory</span>
+                <strong style={{ fontSize: '0.875rem', color: '#0f172a', display: 'block' }}>100% Verified Quality</strong>
+                <span style={{ fontSize: '0.775rem', color: '#64748b' }}>Guaranteed Authentic Products</span>
               </div>
             </div>
 
@@ -257,9 +242,9 @@ export function App() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', fontWeight: 500 }}>
               <button
                 onClick={handleSwitchPersona}
-                style={{ background: 'transparent', border: 'none', color: '#2563eb', fontWeight: 700, cursor: 'pointer' }}
+                style={{ background: 'transparent', border: 'none', color: '#64748b', fontWeight: 600, cursor: 'pointer' }}
               >
-                ⇄ Switch Persona Portal ({isB2C ? 'B2C' : 'B2B'})
+                Sign Out ({currentPersona.name})
               </button>
             </div>
           </div>
@@ -386,7 +371,6 @@ export function App() {
                   setActiveSolutionModal(null);
                   setActiveView(v);
                 }}
-                isB2CPersona={true}
                 initialUseCase={activeSolutionModal}
                 isModal={true}
                 onClose={() => setActiveSolutionModal(null)}

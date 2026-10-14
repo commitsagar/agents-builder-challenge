@@ -30,7 +30,7 @@
 | **[📊 Business Blueprint](#business-blueprint)** | High-level executive architecture: retail challenges, AI solutions, and business ROI |
 | **[🏛️ System Architecture](#system-architecture)** | Google Cloud technical schematic, serverless tiers, and multi-agent pipeline |
 | **[⚡ Performance Benchmarks](#performance-benchmarks)** | Prototype latency scorecard, LLM configurations, threshold values, and stress testing |
-| **[🌟 Key Capabilities](#key-capabilities)** | Dual-portal workflows for B2C Shopper (Alex) and Store Manager (Elena) |
+| **[🌟 Key Capabilities](#key-capabilities)** | Dual-portal workflows for B2C Shopper (Alex) and Store Manager (Sarah) |
 | **[🤖 Agent Hierarchy](#agent-hierarchy)** | Google ADK multi-agent architecture and specialized task sub-agents |
 | **[💻 Tech Stack](#tech-stack)** | Full-stack Google Cloud, React 19, FastAPI, and BigQuery ML technology stack |
 | **[📁 Repository Structure](#repository-structure)** | Codebase directory tree and service file organization |
@@ -59,7 +59,7 @@ npm run web
 │                                   SELECT ROLE GATEWAY                                  │
 │                ┌───────────────────────────┐   ┌───────────────────────────┐           │
 │                │  B2C Consumer Portal      │   │  Store Manager Console    │           │
-│                │  (Alex Rivera - Shopper)  │   │  (Elena Rostova - Admin)  │           │
+│                │  (Alex Rivera - Shopper)  │   │  (Sarah Jenkins - Admin)  │           │
 │                └─────────────┬─────────────┘   └─────────────┬─────────────┘           │
 └──────────────────────────────┼───────────────────────────────┼─────────────────────────┘
                                │                               │
@@ -88,8 +88,8 @@ npm run web
   * Add products to cart and open the slide-out **Cart Drawer**.
   * Click **"⚡ Simulate Cart Abandonment Nudge (Use Case 03)"** to trigger the proactive objection-handling WhatsApp agent resolving pricing and warranty objections.
 
-#### 2. 🏢 Store Manager & Merchant Operations (Elena Rostova)
-* **🚪 Entrypoint:** Click **"👔 Store Manager Console"** in the top utility bar or select Elena Rostova from the Role Gateway.
+#### 2. 🏢 Store Manager & Merchant Operations (Sarah Jenkins)
+* **🚪 Entrypoint:** Click **"👔 Store Manager Console"** in the top utility bar or select **Sarah Jenkins (Store Admin & Inventory Director)** from the Role Gateway.
 * **🔍 Phantom Inventory Anomaly Radar:**
   * Open the **Inventory Intelligence** tab.
   * Inspect flagged SKUs where POS sales velocity dropped to zero while ERP systems show positive on-hand stock ($>5$ units).
@@ -238,7 +238,7 @@ FlamGo delivers a unified dual-portal experience accessible from the **Select Ro
 * **🎒 AI Mission Baskets & Frequently Bought Together:**
   * Mathematical directed-pair bundling engine displaying bundle completeness percentage and 1-click addition for workstation setups.
 
-### 🏢 Store Manager Persona: Elena Rostova (Store Manager & Admin)
+### 🏢 Store Manager Persona: Sarah Jenkins (Store Admin & Inventory Director)
 * **🔍 Inventory Intelligence & Phantom Inventory Radar:**
   * Automatically detects discrepancies where sales velocity drops to zero while ERP shows on-hand units.
   * Dispatches physical cycle count tasks directly to floor associates with live task tracking.
@@ -331,7 +331,7 @@ agents-builder-challenge/
 ├── public/                    # Static assets, branding, icons & blueprints
 ├── src/                       # React 19 Single Page Application
 │   ├── components/            # UI Components & Modular Views
-│   │   ├── AuthGateway/       # Dual-portal role selector (Alex Rivera vs Elena Rostova)
+│   │   ├── AuthGateway/       # Dual-portal role selector (Alex Rivera vs Sarah Jenkins)
 │   │   ├── Storefront/        # Interactive consumer shopping portal & catalog
 │   │   ├── ConversationalCommerce/ # Chat concierge, Cart Recovery & Reasoning
 │   │   ├── MissionBasket/     # Intelligent Workstation & Setup bundle completion

@@ -327,10 +327,54 @@ export const Storefront: React.FC<StorefrontProps> = ({
           <h1 style={{ fontSize: '2.6rem', fontWeight: 800, lineHeight: 1.15, color: '#ffffff', marginBottom: '1rem', letterSpacing: '-0.02em' }}>
             Smart Retail Festival & Living Expo
           </h1>
-          <p style={{ fontSize: '1.05rem', color: '#cbd5e1', marginBottom: '1.75rem', lineHeight: 1.5 }}>
+          <p style={{ fontSize: '1.05rem', color: '#cbd5e1', marginBottom: '1.5rem', lineHeight: 1.5 }}>
             Discover verified products across 10 curated departments with real-time local shelf availability, 
             instant optical video returns, and FlamGo 2-hour courier fulfillment.
           </p>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', flexWrap: 'wrap' }}>
+            <button
+              onClick={() => onOpenConversational?.('01')}
+              style={{
+                background: 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)',
+                color: '#ffffff',
+                border: 'none',
+                padding: '0.75rem 1.35rem',
+                borderRadius: '10px',
+                fontWeight: 800,
+                fontSize: '0.925rem',
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                boxShadow: '0 4px 15px rgba(234, 88, 12, 0.4)'
+              }}
+            >
+              <Sparkles size={17} />
+              <span>💬 Launch AI Shopping Concierge</span>
+            </button>
+
+            <button
+              onClick={() => onSearch("I need an ergonomic setup for hybrid work under $500")}
+              style={{
+                background: 'rgba(255, 255, 255, 0.15)',
+                color: '#ffffff',
+                border: '1px solid rgba(255, 255, 255, 0.3)',
+                padding: '0.75rem 1.25rem',
+                borderRadius: '10px',
+                fontWeight: 700,
+                fontSize: '0.875rem',
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.45rem',
+                backdropFilter: 'blur(8px)'
+              }}
+            >
+              <Search size={15} />
+              <span>Try Demo Query ($500 Setup)</span>
+            </button>
+          </div>
         </div>
 
         {/* Hero Perks Guarantee Card */}
@@ -460,6 +504,133 @@ export const Storefront: React.FC<StorefrontProps> = ({
           )}
         </div>
       </div>
+
+      {/* Real-time Gemini Intent Parsing & Reasoning Trace Box */}
+      {intentResult && (
+        <div style={{
+          background: 'linear-gradient(135deg, #eff6ff 0%, #f8fafc 100%)',
+          border: '2px solid #3b82f6',
+          borderRadius: '16px',
+          padding: '1.5rem',
+          boxShadow: '0 4px 14px rgba(37, 99, 235, 0.08)'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <div style={{ background: '#2563eb', color: '#ffffff', padding: '0.2rem 0.65rem', borderRadius: '6px', fontSize: '0.75rem', fontWeight: 800 }}>
+                Gemini 3.8 Flash • Reasoning Trace
+              </div>
+              <span style={{ fontSize: '0.85rem', color: '#334155', fontWeight: 600 }}>
+                "{intentResult.rawQuery}"
+              </span>
+            </div>
+            <div style={{ display: 'flex', gap: '0.5rem' }}>
+              <span style={{ fontSize: '0.75rem', background: '#dbeafe', color: '#1e40af', padding: '0.2rem 0.55rem', borderRadius: '6px', fontWeight: 700 }}>
+                ScaNN Vector: {((intentResult.vectorSimilarityScore || 0.968) * 100).toFixed(1)}%
+              </span>
+              <span style={{ fontSize: '0.75rem', background: '#dcfce7', color: '#166534', padding: '0.2rem 0.55rem', borderRadius: '6px', fontWeight: 700 }}>
+                BM25 Lexical: {((intentResult.bm25RankScore || 0.924) * 100).toFixed(1)}%
+              </span>
+            </div>
+          </div>
+
+          {intentResult.reasoning && (
+            <div style={{
+              background: '#ffffff',
+              border: '1px solid #bfdbfe',
+              borderRadius: '10px',
+              padding: '0.85rem 1rem',
+              fontSize: '0.875rem',
+              color: '#1e293b',
+              lineHeight: 1.55,
+              marginBottom: '0.85rem'
+            }}>
+              <strong style={{ color: '#1d4ed8', display: 'block', marginBottom: '0.25rem', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                🧠 Chain-of-Thought Intent Analysis:
+              </strong>
+              {intentResult.reasoning}
+            </div>
+          )}
+
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.65rem', fontSize: '0.775rem', color: '#64748b' }}>
+            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+              {intentResult.parsedCategory && (
+                <span style={{ background: '#f1f5f9', padding: '0.2rem 0.55rem', borderRadius: '6px' }}>
+                  Category: <strong style={{ color: '#0f172a' }}>{intentResult.parsedCategory}</strong>
+                </span>
+              )}
+              {intentResult.styleAesthetic && (
+                <span style={{ background: '#f1f5f9', padding: '0.2rem 0.55rem', borderRadius: '6px' }}>
+                  Style Aesthetic: <strong style={{ color: '#0f172a' }}>{intentResult.styleAesthetic}</strong>
+                </span>
+              )}
+              {intentResult.priceConstraint?.max && (
+                <span style={{ background: '#fef3c7', color: '#92400e', padding: '0.2rem 0.55rem', borderRadius: '6px', fontWeight: 700 }}>
+                  Max Budget: ${intentResult.priceConstraint.max}
+                </span>
+              )}
+            </div>
+
+            <button
+              onClick={() => onOpenConversational?.('01')}
+              style={{
+                background: '#2563eb',
+                color: '#ffffff',
+                border: 'none',
+                padding: '0.45rem 0.95rem',
+                borderRadius: '8px',
+                fontWeight: 700,
+                fontSize: '0.8rem',
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.4rem'
+              }}
+            >
+              <span>Open in Full Conversational Concierge</span>
+              <ArrowRight size={14} />
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Featured AI Mission Basket Shelf: Ergonomic Workstation Setup */}
+      {isViewingAll && !searchQuery && (
+        <div style={{
+          background: '#ffffff',
+          borderRadius: '16px',
+          border: '1px solid #e2e8f0',
+          padding: '1.5rem',
+          boxShadow: '0 4px 14px rgba(0,0,0,0.03)'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem', flexWrap: 'wrap', gap: '0.75rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: '#eff6ff', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#2563eb' }}>
+                <Sparkles size={20} />
+              </div>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0f172a', margin: 0 }}>
+                    🎯 AI Mission Basket: Ergonomic Workstation Setup
+                  </h3>
+                  <span style={{ fontSize: '0.7rem', background: '#dbeafe', color: '#1e40af', padding: '0.15rem 0.5rem', borderRadius: '9999px', fontWeight: 800 }}>
+                    Directed-Pair Association Engine
+                  </span>
+                </div>
+                <p style={{ fontSize: '0.775rem', color: '#64748b', margin: '0.2rem 0 0 0' }}>
+                  Dynamic bundle completeness tracking powered by Support, Confidence, and Causal Incremental Uplift metrics.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <MissionBasket
+            anchorProduct={MOCK_PRODUCTS.find(p => p.id === 'prod-laptop-y') || MOCK_PRODUCTS[0]}
+            onAddToCart={onAddToCart}
+            cartProductIds={[]}
+            initialExpanded={true}
+          />
+        </div>
+      )}
 
       {/* 3. Amazon.in Trademark "Shop by Category" Quad Cards (When viewing All or Homepage) */}
       {isViewingAll && !searchQuery && (

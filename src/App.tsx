@@ -18,8 +18,15 @@ import { StoreManagerDashboard } from './components/StoreManagerDashboard';
 import { ShieldCheck, Truck, RotateCcw, CreditCard, ChevronRight, X, Building2, ShoppingBag } from 'lucide-react';
 
 export function App() {
-  // Authentication State: defaults directly to Alex Rivera (B2C)
-  const [currentPersona, setCurrentPersona] = useState<UserProfile | null>(B2C_PROFILE);
+  // Authentication State: defaults to null on fresh load to present the Select Role Gateway
+  const [currentPersona, setCurrentPersona] = useState<UserProfile | null>(() => {
+    try {
+      const saved = localStorage.getItem('flamgo_selected_persona');
+      if (saved === 'MANAGER') return STORE_MANAGER_PROFILE;
+      if (saved === 'B2C') return B2C_PROFILE;
+    } catch (e) {}
+    return null;
+  });
   
   // Portal navigation
   const [activeView, setActiveView] = useState<string>('store');
@@ -38,6 +45,9 @@ export function App() {
 
   const handleSelectPersona = (profile: UserProfile) => {
     setCurrentPersona(profile);
+    try {
+      localStorage.setItem('flamgo_selected_persona', profile.persona);
+    } catch (e) {}
     if (profile.persona === 'MANAGER') {
       setActiveView('manager-dashboard');
     } else {
@@ -46,6 +56,9 @@ export function App() {
   };
 
   const handleSwitchPersona = () => {
+    try {
+      localStorage.removeItem('flamgo_selected_persona');
+    } catch (e) {}
     setCurrentPersona(null);
   };
 
@@ -318,6 +331,10 @@ export function App() {
           if (oid) setTrackedOrderId(oid);
           setActiveView('orders');
           setIsCartOpen(false);
+        }}
+        onSimulateAbandonment={() => {
+          setIsCartOpen(false);
+          setActiveSolutionModal('03');
         }}
       />
 

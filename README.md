@@ -44,28 +44,63 @@
 <a id="live-demo"></a>
 ## 🌐 Live Demo & Interactive Walkthrough
 
-Experience FlamGo live locally or in Cloud Run. FlamGo features a **Select Role Gateway** enabling instant switching between consumer shopping and back-office store operations.
-
-### 🎮 Dual-Portal Interactive Scenarios
-
-#### 1. 👤 B2C Consumer Shopping Experience (Alex Rivera)
-* **💬 Guided Selling & AI Shopping Concierge:** Enter natural language queries (e.g., *"I need an ergonomic setup for hybrid work under $500"*) to view real-time Gemini intent parsing and reasoning traces.
-* **🎒 AI Mission Baskets & Bundle Completion:** Open the Workstation Setup Mission. Watch the bundle completion bar dynamically calculate coverage as accessories (stand, mouse, hub, sleeve) are added to your cart.
-* **📹 Multimodal Vision AI Optical Returns:** Access the Optical Return Scanner. Upload a damaged item photo or simulate a webcam feed to watch Gemini Multimodal Vision detect cracks, verify barcodes, and issue an instant RMA approval in under 20 seconds.
-* **📍 Live Fleet Telematics & GPS Tracking:** Open Order `ORD-99482` to view simulated real-time courier speed, battery level, and dynamic route waypoints.
-* **⚡ Proactive Outbound Cart Recovery:** Simulate cart abandonment to trigger an intelligent objection-handling dialog addressing price, sizing, or warranty concerns.
-
-#### 2. 🏢 Store Manager & Merchant Operations (Elena Rostova)
-* **🔍 Phantom Inventory Radar:** Detect discrepancies where POS velocity drops to zero while ERP shows positive on-hand inventory.
-* **⚡ Automated Cycle Count Dispatch:** Dispatch instant physical cycle count tasks to store floor associates with live status updates.
-* **📈 14-Day SKU Demand Forecast:** Inspect BigQuery ML Temporal Fusion Transformer (TFT) predictions factoring in weather, promotions, and seasonality.
-* **👥 Customer Segmentation & Micro-Targeting:** Review RFM (Recency, Frequency, Monetary) clusters and execute 1-click promotional playbooks (VIP Early Access, Win-Back campaigns).
+Experience FlamGo live locally or in Cloud Run. FlamGo launches directly into the **Select Role Gateway**, enabling seamless switching between consumer shopping and back-office store operations.
 
 ```bash
-# Quick command to launch the local demo:
+# 1. Quick command to launch the local demo:
 npm run web
-# Open http://localhost:5173
+# 2. Open http://localhost:5173 in your browser
 ```
+
+### 🎮 Dual-Portal Interactive Scenarios & How to Test
+
+```
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                                   SELECT ROLE GATEWAY                                  │
+│                ┌───────────────────────────┐   ┌───────────────────────────┐           │
+│                │  B2C Consumer Portal      │   │  Store Manager Console    │           │
+│                │  (Alex Rivera - Shopper)  │   │  (Elena Rostova - Admin)  │           │
+│                └─────────────┬─────────────┘   └─────────────┬─────────────┘           │
+└──────────────────────────────┼───────────────────────────────┼─────────────────────────┘
+                               │                               │
+                               ▼                               ▼
+                 [Storefront & AI Concierge]       [Inventory Radar & RFM Clusters]
+```
+
+#### 1. 👤 B2C Consumer Shopping Experience (Alex Rivera)
+* **🚪 Entrypoint:** Select **"Enter Shopper Portal"** from the Role Gateway.
+* **💬 Guided Selling & AI Shopping Concierge:**
+  * Click **"💬 AI Concierge"** in the top header or click **"Try Demo Query ($500 Setup)"** on the hero banner.
+  * Enter any natural language shopping prompt (e.g., *"I need an ergonomic setup for hybrid work under $500"*).
+  * Gemini 3.8 Flash extracts category, style aesthetic, budget constraints, ScaNN vector scores ($>96\%$), BM25 lexical scores, and displays an interactive **Chain-of-Thought Reasoning Trace**.
+* **🎒 AI Mission Baskets & Bundle Completion:**
+  * Locate the featured **"🎯 AI Mission Basket: Ergonomic Workstation Setup"** on the homepage or open any Laptop product modal.
+  * Observe the dynamic bundle completeness progress bar ($16\% \rightarrow 100\%$) as you toggle accessories (Ergonomic Mouse, Laptop Stand, 7-in-1 Hub, Neoprene Sleeve).
+  * Toggle between **Incremental Uplift** and **Popularity** ranking modes to inspect causal attachment algorithms.
+* **📹 Multimodal Vision AI Optical Returns (<20s SLA):**
+  * Click **"Live Call / Instant AI Returns"** in the navigation bar.
+  * Switch between return scenarios (e.g., *Defective Screen*, *Aesthetic Scratch*, *Fraudulent Serial Mismatch*).
+  * Watch Gemini Multimodal Vision analyze packaging damage, inspect optical defects, check anti-fraud serial checksums, and issue instant auto-refund dispositions.
+* **📍 Live Fleet Telematics & GPS Tracking:**
+  * Click **"Live GPS / Track Item"** in the top navigation or view Order `ORD-99482` under **"Your Orders"**.
+  * View simulated real-time courier telemetry: vehicle plate, battery level, speed ($26\text{ mph}$), cargo temperature ($65^\circ\text{F}$), Google Maps route waypoints, and 7-minute ETA.
+* **⚡ Proactive Outbound Cart Recovery (Use Case 03):**
+  * Add products to cart and open the slide-out **Cart Drawer**.
+  * Click **"⚡ Simulate Cart Abandonment Nudge (Use Case 03)"** to trigger the proactive objection-handling WhatsApp agent resolving pricing and warranty objections.
+
+#### 2. 🏢 Store Manager & Merchant Operations (Elena Rostova)
+* **🚪 Entrypoint:** Click **"👔 Store Manager Console"** in the top utility bar or select Elena Rostova from the Role Gateway.
+* **🔍 Phantom Inventory Anomaly Radar:**
+  * Open the **Inventory Intelligence** tab.
+  * Inspect flagged SKUs where POS sales velocity dropped to zero while ERP systems show positive on-hand stock ($>5$ units).
+  * Click **"Dispatch Cycle Count"** to issue real-time mobile tasks to store associates, tracking resolution status live.
+* **📈 14-Day SKU Demand Forecasting:**
+  * Select any SKU in the forecasting panel to inspect BigQuery ML Temporal Fusion Transformer (TFT) curves incorporating weather covariates and local promotional factors.
+* **👥 Customer Segmentation & Micro-Targeting:**
+  * Switch to the **Customer Segmentation** tab to view RFM (Recency, Frequency, Monetary) clusters: *High-LTV VIPs*, *Churn-Risk Customers*, and *Omnichannel Loyalists*.
+  * Click **"Activate Playbook"** to trigger 1-click personalized retention incentives (VIP Early Access, 10% Win-Back).
+* **🔄 Instant Role Switcher:**
+  * Click **"Switch to Shopper View"** in the header at any time to return to the consumer storefront with state preserved.
 
 ---
 

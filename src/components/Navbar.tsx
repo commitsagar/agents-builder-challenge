@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShoppingBag, MapPin, Search, RotateCcw, Package, Building2, ChevronDown, Navigation, Video, Menu, Zap, Truck } from 'lucide-react';
+import { ShoppingBag, MapPin, Search, RotateCcw, Package, Building2, ChevronDown, Navigation, Video, Menu, Zap, Truck, Sparkles } from 'lucide-react';
 import { UserProfile } from '../types';
 import { RetailStore } from '../data/mockStores';
 import { FlamGoMenuDrawer } from './FlamGoMenuDrawer';
@@ -435,6 +435,32 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Quick Actions (Right Hand) */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexShrink: 0 }}>
+            {/* Gemini AI Concierge */}
+            <button
+              onClick={() => setActiveView('conversational', '01')}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.45rem',
+                background: activeView === 'conversational' ? '#eff6ff' : 'rgba(37, 99, 235, 0.08)',
+                border: activeView === 'conversational' ? '1px solid #bfdbfe' : '1px solid rgba(37, 99, 235, 0.25)',
+                borderRadius: '8px',
+                padding: '0.5rem 0.85rem',
+                cursor: 'pointer',
+                color: activeView === 'conversational' ? '#1d4ed8' : '#2563eb',
+                fontSize: '0.85rem',
+                fontWeight: 700,
+                transition: 'all 0.15s ease'
+              }}
+              title="Open Gemini AI Shopping Concierge & Guided Selling"
+            >
+              <Sparkles size={17} color="#2563eb" />
+              <div style={{ textAlign: 'left' }}>
+                <span style={{ fontSize: '0.65rem', color: '#ea580c', display: 'block', lineHeight: 1, fontWeight: 800 }}>Gemini AI</span>
+                <span>Concierge</span>
+              </div>
+            </button>
+
             {/* Live GPS Tracker */}
             <button
               onClick={() => setActiveView('gps')}

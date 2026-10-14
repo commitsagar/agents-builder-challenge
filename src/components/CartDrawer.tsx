@@ -15,6 +15,7 @@ interface CartDrawerProps {
   onClearCart: () => void;
   selectedStore?: RetailStore;
   onNavigateToOrders?: (orderId: string) => void;
+  onSimulateAbandonment?: () => void;
 }
 
 export const CartDrawer: React.FC<CartDrawerProps> = ({
@@ -25,7 +26,8 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
   onRemoveItem,
   onClearCart,
   selectedStore,
-  onNavigateToOrders
+  onNavigateToOrders,
+  onSimulateAbandonment
 }) => {
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [orderConfirmation, setOrderConfirmation] = useState<{
@@ -427,6 +429,33 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                   <span>Order Total</span>
                   <span style={{ color: '#2563eb' }}>${finalTotal.toFixed(2)}</span>
                 </div>
+
+                {onSimulateAbandonment && (
+                  <button
+                    onClick={onSimulateAbandonment}
+                    type="button"
+                    style={{
+                      width: '100%',
+                      padding: '0.65rem 0.85rem',
+                      background: '#fff7ed',
+                      border: '1px dashed #f97316',
+                      borderRadius: '8px',
+                      color: '#c2410c',
+                      fontWeight: 700,
+                      fontSize: '0.775rem',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '0.45rem',
+                      marginTop: '0.5rem',
+                      transition: 'all 0.15s ease'
+                    }}
+                    title="Simulate shopper hesitation to test Use Case 03 proactive recovery agent"
+                  >
+                    <span>⚡ Simulate Cart Abandonment Nudge (Use Case 03)</span>
+                  </button>
+                )}
 
                 <button
                   onClick={handleCheckout}

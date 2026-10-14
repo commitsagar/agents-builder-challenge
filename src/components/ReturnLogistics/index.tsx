@@ -65,7 +65,7 @@ export const ReturnLogistics: React.FC = () => {
             <span className="badge badge-red">
               <ShieldAlert size={13} /> Challenge 6: Reverse Logistics & Return Fraud Prevention
             </span>
-            <span className="badge badge-green">Gemini 3.7 Flash Vision Inspection</span>
+            <span className="badge badge-green">Automated Optical Inspection</span>
           </div>
           <h1 style={{ fontSize: '2.3rem', lineHeight: '1.2', marginBottom: '1rem', fontWeight: 800 }}>
             Autonomous Reverse Logistics & <span className="glow-gemini">Multimodal Vision</span> Disposition
@@ -178,7 +178,7 @@ export const ReturnLogistics: React.FC = () => {
               <span>Simulate New Return Intake</span>
             </h3>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '1.25rem' }}>
-              Test Gemini 3.7 Flash Vision on any customer claim and item photo.
+              Test automated vision inspection on any customer claim and item photo.
             </p>
 
             <form onSubmit={handleRunCustomAnalysis} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -234,7 +234,7 @@ export const ReturnLogistics: React.FC = () => {
                 {isAnalyzing ? (
                   <>
                     <RefreshCw size={16} className="spin" />
-                    <span>Executing Gemini Vision Inspection...</span>
+                    <span>Executing Optical Inspection...</span>
                   </>
                 ) : (
                   <>
@@ -358,7 +358,7 @@ export const ReturnLogistics: React.FC = () => {
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
               <Sparkles size={16} color="#818cf8" />
               <h4 style={{ fontSize: '0.85rem', color: '#fff', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                Gemini 3.7 Flash Vision Report
+                Automated Optical Inspection Report
               </h4>
             </div>
             <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>

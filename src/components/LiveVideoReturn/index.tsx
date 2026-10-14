@@ -70,7 +70,7 @@ export const LiveVideoReturn: React.FC = () => {
             OmniCare Live Video Inspection Call
           </h1>
           <p style={{ color: '#475569', fontSize: '1rem', lineHeight: 1.6 }}>
-            Eliminate traditional return friction. Connect on a live video stream where <strong>Gemini Multimodal Live Vision</strong> inspects product barcodes, verifies cryptographic holographic seals, grades physical wear in real-time, and issues instant refunds on the call.
+            Eliminate traditional return friction. Connect on a live video stream where <strong>Live Vision Inspection</strong> inspects product barcodes, verifies cryptographic holographic seals, grades physical wear in real-time, and issues instant refunds on the call.
           </p>
         </div>
       </div>
@@ -130,7 +130,7 @@ export const LiveVideoReturn: React.FC = () => {
               <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ef4444', animation: 'pulse 1.5s infinite' }} />
               <strong>LIVE • {formatTime(callDuration)}</strong>
               <span style={{ color: '#94a3b8' }}>|</span>
-              <span style={{ color: '#38bdf8' }}>Gemini Multimodal Live</span>
+              <span style={{ color: '#38bdf8' }}>Live Optical Stream</span>
             </div>
 
             <div style={{
@@ -401,7 +401,7 @@ export const LiveVideoReturn: React.FC = () => {
                 display: 'block',
                 marginBottom: '0.25rem'
               }}>
-                Gemini Live Resolution Decision
+                Automated Resolution Decision
               </span>
               <p style={{
                 fontSize: '0.95rem',

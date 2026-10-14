@@ -11,10 +11,11 @@ import { CartDrawer } from './components/CartDrawer';
 import { SettingsModal } from './components/SettingsModal';
 import { StoreLocatorModal } from './components/StoreLocatorModal';
 import { Product, CartItem, IntentAnalysis, UserProfile } from './types';
-import { B2C_PROFILE } from './data/mockScenarios';
+import { B2C_PROFILE, STORE_MANAGER_PROFILE } from './data/mockScenarios';
 import { RetailStore, MOCK_RETAIL_STORES } from './data/mockStores';
 import { geminiRetailService } from './services/geminiService';
-import { ShieldCheck, Truck, RotateCcw, CreditCard, ChevronRight, X } from 'lucide-react';
+import { StoreManagerDashboard } from './components/StoreManagerDashboard';
+import { ShieldCheck, Truck, RotateCcw, CreditCard, ChevronRight, X, Building2, ShoppingBag } from 'lucide-react';
 
 export function App() {
   // Authentication State: defaults directly to Alex Rivera (B2C)
@@ -37,7 +38,11 @@ export function App() {
 
   const handleSelectPersona = (profile: UserProfile) => {
     setCurrentPersona(profile);
-    setActiveView('store');
+    if (profile.persona === 'MANAGER') {
+      setActiveView('manager-dashboard');
+    } else {
+      setActiveView('store');
+    }
   };
 
   const handleSwitchPersona = () => {
@@ -114,6 +119,7 @@ export function App() {
       <Navbar
         currentPersona={currentPersona}
         onSwitchPersona={handleSwitchPersona}
+        onSelectPersona={handleSelectPersona}
         activeView={activeView}
         setActiveView={(view: any, useCase?: string) => {
           if (useCase) setConversationalUseCase(useCase as any);
@@ -134,6 +140,13 @@ export function App() {
 
       {/* Main Persona Portal Body */}
       <main className="container-full" style={{ padding: '2rem 1.5rem', flexGrow: 1 }}>
+        {/* Store Manager & Admin */}
+        {activeView === 'manager-dashboard' && (
+          <StoreManagerDashboard
+            onSwitchToShopper={() => handleSelectPersona(B2C_PROFILE)}
+          />
+        )}
+
         {/* Storefront View */}
         {activeView === 'store' && (
           <Storefront
@@ -240,6 +253,46 @@ export function App() {
             </div>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', fontWeight: 500 }}>
+              {currentPersona.persona === 'B2C' ? (
+                <button
+                  onClick={() => handleSelectPersona(STORE_MANAGER_PROFILE)}
+                  style={{
+                    background: 'transparent',
+                    border: 'none',
+                    color: '#2563eb',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.35rem'
+                  }}
+                  title="Switch to Store Manager Console"
+                >
+                  <Building2 size={14} />
+                  <span>Store Manager Console</span>
+                </button>
+              ) : (
+                <button
+                  onClick={() => handleSelectPersona(B2C_PROFILE)}
+                  style={{
+                    background: 'transparent',
+                    border: 'none',
+                    color: '#2563eb',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.35rem'
+                  }}
+                  title="Switch to B2C Consumer Shopper"
+                >
+                  <ShoppingBag size={14} />
+                  <span>Consumer Shopper View</span>
+                </button>
+              )}
+
+              <span style={{ color: '#cbd5e1' }}>|</span>
+
               <button
                 onClick={handleSwitchPersona}
                 style={{ background: 'transparent', border: 'none', color: '#64748b', fontWeight: 600, cursor: 'pointer' }}

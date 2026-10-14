@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, Trash2, ShoppingBag, ArrowRight, ShieldCheck, Tag, Building2, CheckCircle2, Package } from 'lucide-react';
-import { CartItem } from '../types';
+import { CartItem, Product } from '../types';
+import { FrequentlyBoughtTogether } from './FrequentlyBoughtTogether';
 import { RetailStore } from '../data/mockStores';
 import confetti from 'canvas-confetti';
 import { submitCloudRunCheckout } from '../services/apiClient';
@@ -364,6 +365,17 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                     </button>
                   </div>
                 ))
+              )}
+
+              {/* Frequently Bought Together Bundle Widget in Cart (Section 4A) */}
+              {cartItems.length > 0 && (
+                <div style={{ marginTop: '0.5rem' }}>
+                  <FrequentlyBoughtTogether
+                    anchorProduct={cartItems[0].product}
+                    onAddToCart={(p: Product) => onUpdateQuantity(p.id, 1)}
+                    surface="cart_bundle"
+                  />
+                </div>
               )}
             </div>
 

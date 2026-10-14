@@ -120,7 +120,7 @@ export interface CartItem {
   quantity: number;
 }
 
-export type PersonaType = 'B2C' | 'B2B';
+export type PersonaType = 'B2C' | 'B2B' | 'MANAGER';
 
 export interface UserProfile {
   id: string;

@@ -3,10 +3,12 @@ import { ShoppingBag, MapPin, Search, RotateCcw, Package, Building2, ChevronDown
 import { UserProfile } from '../types';
 import { RetailStore } from '../data/mockStores';
 import { FlamGoMenuDrawer } from './FlamGoMenuDrawer';
+import { B2C_PROFILE, STORE_MANAGER_PROFILE } from '../data/mockScenarios';
 
 interface NavbarProps {
   currentPersona: UserProfile;
   onSwitchPersona: () => void;
+  onSelectPersona?: (persona: UserProfile) => void;
   activeView: string;
   setActiveView: (view: any, useCase?: string) => void;
   cartCount: number;
@@ -25,6 +27,7 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({
   currentPersona,
   onSwitchPersona,
+  onSelectPersona,
   activeView,
   setActiveView,
   cartCount,
@@ -96,7 +99,59 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           {/* Right Persona Pill */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+            {currentPersona.persona === 'B2C' && onSelectPersona && (
+              <button
+                onClick={() => {
+                  onSelectPersona(STORE_MANAGER_PROFILE);
+                  setActiveView('manager-dashboard');
+                }}
+                style={{
+                  background: 'rgba(56, 189, 248, 0.15)',
+                  border: '1px solid rgba(56, 189, 248, 0.4)',
+                  color: '#38bdf8',
+                  borderRadius: '6px',
+                  padding: '0.2rem 0.65rem',
+                  fontSize: '0.725rem',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.35rem'
+                }}
+                title="Switch to Store Manager Console (Inventory Intelligence & Customer Segmentation)"
+              >
+                <Building2 size={12} />
+                <span>👔 Store Manager Console</span>
+              </button>
+            )}
+
+            {currentPersona.persona === 'MANAGER' && onSelectPersona && (
+              <button
+                onClick={() => {
+                  onSelectPersona(B2C_PROFILE);
+                  setActiveView('store');
+                }}
+                style={{
+                  background: 'rgba(234, 88, 12, 0.2)',
+                  border: '1px solid rgba(234, 88, 12, 0.5)',
+                  color: '#fed7aa',
+                  borderRadius: '6px',
+                  padding: '0.2rem 0.65rem',
+                  fontSize: '0.725rem',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.35rem'
+                }}
+                title="Switch to B2C Consumer Shopper Portal"
+              >
+                <ShoppingBag size={12} />
+                <span>Switch to Shopper View</span>
+              </button>
+            )}
+
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <img
                 src={currentPersona.avatar}
@@ -105,23 +160,151 @@ export const Navbar: React.FC<NavbarProps> = ({
               />
               <span style={{ color: '#ffffff', fontWeight: 600 }}>{currentPersona.name}</span>
               <span style={{
-                background: '#fef3c7',
-                color: '#92400e',
+                background: currentPersona.persona === 'MANAGER' ? '#e0f2fe' : '#fef3c7',
+                color: currentPersona.persona === 'MANAGER' ? '#0369a1' : '#92400e',
                 fontSize: '0.65rem',
                 fontWeight: 700,
                 padding: '0.1rem 0.4rem',
                 borderRadius: '4px'
               }}>
-                {currentPersona.tier || 'VIP Member'}
+                {currentPersona.tier || (currentPersona.persona === 'MANAGER' ? 'Admin' : 'VIP Member')}
               </span>
             </div>
+
+            <button
+              onClick={onSwitchPersona}
+              style={{
+                background: 'transparent',
+                border: 'none',
+                color: '#94a3b8',
+                cursor: 'pointer',
+                fontSize: '0.725rem',
+                textDecoration: 'underline'
+              }}
+              title="Sign out to role selector"
+            >
+              Sign Out
+            </button>
           </div>
         </div>
       </div>
 
-      {/* Main Retail / Ops Header */}
-      <div style={{ padding: '0.85rem 1.5rem' }}>
-        <div className="container-full" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1.5rem' }}>
+      {/* Main Retail / Admin Header */}
+      {currentPersona.persona === 'MANAGER' ? (
+        <div style={{ padding: '0.85rem 1.5rem', background: '#ffffff', borderBottom: '1px solid #e2e8f0' }}>
+          <div className="container-full" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1.5rem', flexWrap: 'wrap' }}>
+            {/* Manager Logo */}
+            <div
+              onClick={() => setActiveView('manager-dashboard')}
+              style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer' }}
+            >
+              <div style={{
+                width: '38px',
+                height: '38px',
+                borderRadius: '10px',
+                background: 'linear-gradient(135deg, #0284c7 0%, #0f172a 100%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#fff',
+                fontWeight: 900,
+                fontSize: '1.25rem',
+                boxShadow: '0 2px 8px rgba(2, 132, 199, 0.35)'
+              }}>
+                M
+              </div>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                  <span style={{ fontSize: '1.35rem', fontWeight: 900, color: '#0f172a', letterSpacing: '-0.02em' }}>
+                    Flam<span style={{ color: '#0284c7' }}>Go</span> Admin
+                  </span>
+                  <span style={{ fontSize: '0.65rem', background: '#e0f2fe', color: '#0369a1', padding: '0.15rem 0.5rem', borderRadius: '4px', fontWeight: 800 }}>
+                    STORE MANAGER
+                  </span>
+                </div>
+                <p style={{ fontSize: '0.725rem', color: '#64748b', margin: 0 }}>
+                  Seattle Flagship (STORE-104) • Inventory Intelligence & Customer Segmentation
+                </p>
+              </div>
+            </div>
+
+            {/* Quick Navigation Tabs */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', flexWrap: 'wrap' }}>
+              <button
+                onClick={() => setActiveView('manager-dashboard')}
+                style={{
+                  background: activeView === 'manager-dashboard' ? '#eff6ff' : 'transparent',
+                  border: activeView === 'manager-dashboard' ? '1px solid #bfdbfe' : '1px solid #e2e8f0',
+                  color: activeView === 'manager-dashboard' ? '#1d4ed8' : '#334155',
+                  padding: '0.5rem 0.95rem',
+                  borderRadius: '8px',
+                  fontWeight: 700,
+                  fontSize: '0.85rem',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.45rem'
+                }}
+              >
+                <Package size={16} color="#2563eb" />
+                <span>Admin</span>
+              </button>
+
+              <button
+                onClick={() => setActiveView('store')}
+                style={{
+                  background: activeView === 'store' ? '#eff6ff' : 'transparent',
+                  border: activeView === 'store' ? '1px solid #bfdbfe' : '1px solid #e2e8f0',
+                  color: activeView === 'store' ? '#1d4ed8' : '#64748b',
+                  padding: '0.5rem 0.95rem',
+                  borderRadius: '8px',
+                  fontWeight: 600,
+                  fontSize: '0.85rem',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.45rem'
+                }}
+              >
+                <ShoppingBag size={16} />
+                <span>Preview Storefront</span>
+              </button>
+            </div>
+
+            {/* Right Action Switcher */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              {onSelectPersona && (
+                <button
+                  onClick={() => {
+                    onSelectPersona(B2C_PROFILE);
+                    setActiveView('store');
+                  }}
+                  style={{
+                    background: '#2563eb',
+                    color: '#ffffff',
+                    border: 'none',
+                    padding: '0.5rem 1rem',
+                    borderRadius: '8px',
+                    fontWeight: 700,
+                    fontSize: '0.825rem',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.45rem',
+                    boxShadow: '0 2px 6px rgba(37, 99, 235, 0.25)'
+                  }}
+                >
+                  <ShoppingBag size={15} />
+                  <span>Switch to Shopper (Alex)</span>
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      ) : (
+        <>
+          <div style={{ padding: '0.85rem 1.5rem' }}>
+            <div className="container-full" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1.5rem' }}>
           
           {/* Logo */}
           <div
@@ -474,6 +657,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             )}
           </div>
         </div>
+      </>
+      )}
 
       {/* FlamGo All Departments Slide-Over Drawer */}
       <FlamGoMenuDrawer

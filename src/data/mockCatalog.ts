@@ -14566,5 +14566,120 @@ export const MOCK_PRODUCTS: Product[] = [
     "elasticity": -1.38,
     "inStoreAisle": "Aisle 10E (Creative & Hobbies)",
     "returnRiskScore": 23
+  },
+  {
+    "id": "prod-laptop-y",
+    "name": "Laptop Y UltraPro 16 (M-Series Silicon, 32GB RAM, 1TB SSD)",
+    "category": "Electronics",
+    "price": 899,
+    "originalPrice": 1099,
+    "rating": 4.95,
+    "reviewsCount": 580,
+    "stock": 24,
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80",
+    "description": "Next-generation high performance laptop engineered for professional creative work, software engineering, and mobile productivity.",
+    "features": [
+      "Liquid Retina XDR 120Hz display",
+      "32GB Unified Memory & 1TB NVMe SSD",
+      "All-day 22-hour battery life",
+      "MagSafe fast charging and 3x Thunderbolt 4 ports"
+    ],
+    "tags": [
+      "laptop",
+      "electronics",
+      "workstation",
+      "computer",
+      "office",
+      "macbook"
+    ],
+    "elasticity": -1.15,
+    "inStoreAisle": "Aisle 1B (Pro Computing & Workstations)",
+    "returnRiskScore": 5
+  },
+  {
+    "id": "prod-laptop-air",
+    "name": "Laptop Horizon Slim 14 (All-Day Battery, 16GB, 512GB)",
+    "category": "Electronics",
+    "price": 749,
+    "originalPrice": 849,
+    "rating": 4.88,
+    "reviewsCount": 320,
+    "stock": 35,
+    "image": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=800&q=80",
+    "description": "Ultraportable featherweight laptop crafted for remote work, campus, and everyday high-speed computing.",
+    "features": [
+      "Featherweight 2.7 lb unibody aluminum",
+      "14-inch Quad-HD anti-glare screen",
+      "18-hour continuous battery",
+      "Backlit silent keyboard with biometric unlock"
+    ],
+    "tags": [
+      "laptop",
+      "electronics",
+      "ultrabook",
+      "computer",
+      "portable"
+    ],
+    "elasticity": -1.25,
+    "inStoreAisle": "Aisle 1B (Pro Computing & Workstations)",
+    "returnRiskScore": 6
+  },
+  {
+    "id": "prod-laptop-pro15",
+    "name": "Dell XPS 15 Pro Workstation Laptop (Core i9, 32GB RAM, OLED)",
+    "category": "Electronics",
+    "price": 1299,
+    "originalPrice": 1499,
+    "rating": 4.92,
+    "reviewsCount": 412,
+    "stock": 18,
+    "image": "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=800&q=80",
+    "description": "Premier professional workstation laptop with 3.5K OLED touch display, NVIDIA GeForce graphics, and aerospace-grade carbon fiber palm rest.",
+    "features": [
+      "15.6-inch 3.5K OLED InfinityEdge touch display",
+      "Intel Core i9-13900H 14-core processor",
+      "32GB DDR5 4800MHz RAM & 1TB PCIe NVMe SSD",
+      "NVIDIA GeForce RTX 4060 8GB GDDR6"
+    ],
+    "tags": [
+      "laptop",
+      "electronics",
+      "workstation",
+      "dell",
+      "computer",
+      "pro"
+    ],
+    "elasticity": -1.1,
+    "inStoreAisle": "Aisle 1B (Pro Computing & Workstations)",
+    "returnRiskScore": 4
+  },
+  {
+    "id": "prod-laptop-thinkpad",
+    "name": "ThinkPad X1 Carbon Gen 11 Laptop (Core i7, 16GB, 1TB SSD)",
+    "category": "Electronics",
+    "price": 999,
+    "originalPrice": 1199,
+    "rating": 4.89,
+    "reviewsCount": 275,
+    "stock": 22,
+    "image": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=800&q=80",
+    "description": "Legendary business ultrabook designed for ultimate reliability, spill-resistant keyboard, rapid charging, and enterprise security.",
+    "features": [
+      "Ultralight 2.48 lbs carbon fiber chassis",
+      "14-inch 2.8K OLED 400-nit anti-glare display",
+      "Intel Core i7-1365U vPro processor",
+      "57Wh battery with Rapid Charge (80% in 60 mins)"
+    ],
+    "tags": [
+      "laptop",
+      "electronics",
+      "workstation",
+      "business",
+      "thinkpad",
+      "computer"
+    ],
+    "elasticity": -1.2,
+    "inStoreAisle": "Aisle 1B (Pro Computing & Workstations)",
+    "returnRiskScore": 5
   }
 ];

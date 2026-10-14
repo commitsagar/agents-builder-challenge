@@ -1,7 +1,7 @@
 """
 OmniCommerce Cloud Run Backend Service
 FastAPI REST microservices connecting Google Cloud Firestore (Firebase), BigQuery & BigQuery AI,
-Vertex AI Search, and Gemini 3.7 Flash reasoning.
+Vertex AI Search, and Gemini 3.8 Flash reasoning.
 100% Cloud Managed - No local database files required.
 """
 
@@ -53,7 +53,7 @@ def health_check():
         "service": "omnicommerce-cloud-run",
         "region": "us-central1",
         "project": "aistudio-499215",
-        "model": "gemini-3.7-flash",
+        "model": "gemini-3.8-flash",
         "database_engines": {
             "operational_db": "Google Cloud Firestore (Firebase Native Mode, us-central1)",
             "analytics_warehouse": "Google BigQuery (US, omnicommerce_retail_analytics)",

@@ -60,8 +60,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, o
               <Key size={18} color="#2563eb" />
             </div>
             <div>
-              <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#0f172a' }}>AI Model & API Configuration</h2>
-              <p style={{ fontSize: '0.75rem', color: '#64748b' }}>Configure Gemini 3.7 Flash credentials</p>
+              <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#0f172a' }}>AI Engine & API Configuration</h2>
+              <p style={{ fontSize: '0.75rem', color: '#64748b' }}>Configure AI engine credentials</p>
             </div>
           </div>
 
@@ -84,21 +84,21 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, o
             {isLive ? <CheckCircle2 size={18} color="#16a34a" /> : <Sparkles size={18} color="#2563eb" />}
             <div style={{ fontSize: '0.8rem' }}>
               <strong style={{ color: '#0f172a', display: 'block' }}>
-                {isLive ? 'Live Gemini 3.7 API Connected' : 'High-Fidelity Retail Simulation Active'}
+                {isLive ? 'Live AI Engine Connected' : 'High-Fidelity Retail Simulation Active'}
               </strong>
               <span style={{ color: '#64748b' }}>
-                {isLive ? 'Queries execute against live Google GenAI endpoint.' : 'Ready for offline presentation and demo evaluations.'}
+                {isLive ? 'Queries execute against live cloud endpoints.' : 'Ready for offline presentation and demo evaluations.'}
               </span>
             </div>
           </div>
 
           <div>
             <label style={{ fontSize: '0.75rem', color: '#475569', fontWeight: 700, display: 'block', marginBottom: '0.35rem' }}>
-              GOOGLE GEMINI API KEY (OPTIONAL)
+              API ACCESS KEY (OPTIONAL)
             </label>
             <input
               type="text"
-              placeholder="AIzaSy... (leave blank to run high-fidelity simulator)"
+              placeholder="Enter API key... (leave blank to run high-fidelity simulator)"
               value={inputKey}
               onChange={(e) => setInputKey(e.target.value)}
             />
@@ -109,14 +109,14 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, o
 
           <div>
             <label style={{ fontSize: '0.75rem', color: '#475569', fontWeight: 700, display: 'block', marginBottom: '0.35rem' }}>
-              ACTIVE MODEL
+              ACTIVE ENGINE
             </label>
             <select
               value={selectedModel}
               onChange={(e) => setSelectedModel(e.target.value)}
             >
-              <option value="gemini-3.7-flash">Gemini 3.7 Flash (Default - Multimodal Reasoning & Thinking)</option>
-              <option value="gemini-3.7-pro">Gemini 3.7 Pro (Deep Chain-of-Thought & Edge Dispositions)</option>
+              <option value="gemini-3.7-flash">Standard Intelligence Engine (Multimodal & Fast)</option>
+              <option value="gemini-3.7-pro">Advanced Reasoning Engine (Deep Dispositions)</option>
             </select>
           </div>
 

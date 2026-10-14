@@ -1,4 +1,4 @@
-import { ReturnInspection, UserProfile, GpsTelemetry } from '../types';
+import { ReturnInspection, UserProfile, GpsTelemetry, PhantomAnomaly, CustomerSegment, BasketAffinityRule } from '../types';
 
 export const B2C_PROFILE: UserProfile = {
   id: 'usr-b2c-901',
@@ -11,6 +11,18 @@ export const B2C_PROFILE: UserProfile = {
   points: 1450,
   address: '742 Evergreen Pike, Seattle, WA 98101',
   storeId: 'Store #402 (Seattle Flagship)'
+};
+
+export const STORE_MANAGER_PROFILE: UserProfile = {
+  id: 'usr-mgr-104',
+  name: 'Sarah Jenkins',
+  email: 'sarah.jenkins@flamgo-retail.internal',
+  role: 'Store General Manager & Admin Director',
+  persona: 'MANAGER',
+  avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80',
+  tier: 'Store Admin & Inventory Director',
+  address: 'Seattle Flagship STORE-104, 500 Pine St, Seattle, WA',
+  storeId: 'STORE-104 (Seattle Flagship)'
 };
 
 export const ORDER_GPS_DATABASE: { [key: string]: GpsTelemetry } = {
@@ -288,7 +300,141 @@ export const MOCK_ORDERS = [
     timeline: [
       { step: 'Order Placed', time: 'Oct 02, 09:00 AM', done: true },
       { step: 'Customer Cancel Requested', time: 'Oct 02, 10:15 AM', done: true },
-      { step: 'BigQuery DML Update Executed & $145.00 Refunded', time: 'Oct 02, 10:15 AM', done: true }
+      { step: 'Order Cancelled & $145.00 Refunded to Payment Method', time: 'Oct 02, 10:15 AM', done: true }
     ]
   }
 ];
+
+export const MOCK_PHANTOM_ANOMALIES: PhantomAnomaly[] = [
+  {
+    id: 'PHANTOM-8821',
+    sku: 'prod-002',
+    productName: 'Aura Pro Active Noise-Canceling Wireless Studio Headphones',
+    category: 'Electronics',
+    storeLocation: 'Store #104 (Seattle Flagship) • Aisle 1A Bay 3',
+    erpLedgerStock: 14,
+    posSalesVelocity7d: 0,
+    predictedPhysicalStock: 0,
+    discrepancyDelta: -14,
+    phantomRiskScore: 94.6,
+    potentialLostRevenue: 4899.86,
+    recommendedAction: 'Dispatch associate cycle count to Aisle 1A Bay 3 (High Theft / Phantom Shrink)',
+    status: 'flagged'
+  },
+  {
+    id: 'PHANTOM-8822',
+    sku: 'prod-004',
+    productName: 'Artisan Precision Pour-Over Gooseneck Kettle',
+    category: 'Kitchen',
+    storeLocation: 'Store #104 (Seattle Flagship) • Aisle 4C Bay 2',
+    erpLedgerStock: 18,
+    posSalesVelocity7d: 1,
+    predictedPhysicalStock: 6,
+    discrepancyDelta: -12,
+    phantomRiskScore: 78.4,
+    potentialLostRevenue: 1674.00,
+    recommendedAction: 'Cycle count bay 4C. Check backroom overflow bin B-12 for unstocked carton.',
+    status: 'flagged'
+  },
+  {
+    id: 'PHANTOM-8823',
+    sku: 'prod-005',
+    productName: 'Solace Merino Wool Thermal Knit Crew Sweater',
+    category: 'Apparel',
+    storeLocation: 'Store #104 (Seattle Flagship) • Aisle 2B Fixture 4',
+    erpLedgerStock: 22,
+    posSalesVelocity7d: 0,
+    predictedPhysicalStock: 8,
+    discrepancyDelta: -14,
+    phantomRiskScore: 82.1,
+    potentialLostRevenue: 1750.00,
+    recommendedAction: 'Audit fitting room return racks & verify RFID hanger sensors.',
+    status: 'flagged'
+  },
+  {
+    id: 'PHANTOM-8824',
+    sku: 'prod-001',
+    productName: 'Nordic Oak Minimalist Ergonomic Desk Chair',
+    category: 'Furniture',
+    storeLocation: 'Store #104 (Seattle Flagship) • Aisle 3A Floor Display',
+    erpLedgerStock: 24,
+    posSalesVelocity7d: 11,
+    predictedPhysicalStock: 24,
+    discrepancyDelta: 0,
+    phantomRiskScore: 4.2,
+    potentialLostRevenue: 0,
+    recommendedAction: 'Stock verified healthy. Normal POS sales velocity matching ledger.',
+    status: 'resolved'
+  }
+];
+
+export const MOCK_CUSTOMER_SEGMENTS: CustomerSegment[] = [
+  {
+    id: 'seg-vip-champions',
+    name: 'VIP Omnichannel Champions (Top 8%)',
+    size: 11360,
+    percentOfRevenue: 48.2,
+    avgOrderValue: 286.40,
+    churnRisk: 'Low',
+    tags: ['High Lifetime Value', '2-Hour Delivery User', 'Low Return Rate', 'High NPS (94)'],
+    recommendedPlaybook: 'Automatic 2-Hour Express Delivery priority, early access to Scandinavian furniture drops, zero-box return VIP pickup.'
+  },
+  {
+    id: 'seg-aesthetic-aficionados',
+    name: 'Aesthetic & Design Aficionados (24%)',
+    size: 34100,
+    percentOfRevenue: 26.5,
+    avgOrderValue: 164.20,
+    churnRisk: 'Low',
+    tags: ['Scandinavian Design', 'Specialty Coffee', 'Audiophile Acoustics'],
+    recommendedPlaybook: 'Curated category bundles with cross-sell discounts (e.g. Architect Lamp + Ergonomic Chair).'
+  },
+  {
+    id: 'seg-deal-seekers',
+    name: 'Price-Conscious & Lightning Deal Seekers (36%)',
+    size: 51140,
+    percentOfRevenue: 15.8,
+    avgOrderValue: 68.50,
+    churnRisk: 'Medium',
+    tags: ['Flash Sale Driven', 'High Cart Abandonment', 'Price Elasticity -1.8'],
+    recommendedPlaybook: 'Targeted conversational WhatsApp cart nudges with 5% limited-time incentive; low-margin clearance.'
+  },
+  {
+    id: 'seg-at-risk',
+    name: 'At-Risk & Inactive Cohort (32%)',
+    size: 45450,
+    percentOfRevenue: 9.5,
+    avgOrderValue: 82.00,
+    churnRisk: 'High',
+    tags: ['No purchase in 90d', 'Previous return dispute', 'Low engagement'],
+    recommendedPlaybook: 'Win-back concierge engagement powered by FlamIA with personalized recommendations based on previous browsing.'
+  }
+];
+
+export const MOCK_BASKET_AFFINITIES: BasketAffinityRule[] = [
+  {
+    antecedent: ['Nordic Oak Ergonomic Chair'],
+    consequent: 'Lumina Architect Counterbalance Task Lamp',
+    support: 0.18,
+    confidence: 0.72,
+    lift: 3.4,
+    revenueImpact: '+$42,800/mo'
+  },
+  {
+    antecedent: ['Aura Pro ANC Headphones'],
+    consequent: '65W GaN Dual USB-C Fast Charger',
+    support: 0.22,
+    confidence: 0.68,
+    lift: 2.9,
+    revenueImpact: '+$28,400/mo'
+  },
+  {
+    antecedent: ['Precision Gooseneck Electric Kettle'],
+    consequent: 'Double-Walled Borosilicate Glass Carafe',
+    support: 0.14,
+    confidence: 0.65,
+    lift: 3.8,
+    revenueImpact: '+$19,200/mo'
+  }
+];
+

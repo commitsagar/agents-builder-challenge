@@ -42,9 +42,9 @@ export const VirtualAssistant: React.FC<VirtualAssistantProps> = ({
     {
       id: '1',
       sender: 'ai',
-      text: "👋 Hi there! I'm FlamGo AI, your personal shopping concierge powered by Gemini 3.7 Flash. I can help you discover items across all 10 departments, compare specifications, or track orders. What are you looking for today?",
+      text: "👋 Hi there! I'm FlamGo AI, your personal shopping concierge. I can help you discover items across all 10 departments, compare specifications, or track orders. What are you looking for today?",
       timestamp: 'Just now',
-      thinkingTrace: 'Gemini 3.7 Flash initialized with 2,048 reasoning budget. Connected to Firestore inventory catalog & local store fulfillment hubs.'
+      thinkingTrace: 'AI Assistant connected to store inventory catalog & local store fulfillment hubs.'
     }
   ]);
 
@@ -91,20 +91,20 @@ export const VirtualAssistant: React.FC<VirtualAssistantProps> = ({
       // 1. Order Tracking Query
       if (lower.includes('ord-') || lower.includes('track') || lower.includes('where is my order')) {
         replyText = "I located your order **ORD-99482** (Aura Pro ANC Studio Headphones). It is currently **Out for Delivery** via FedEx Priority van #7! The driver is 1.4 miles away with estimated dropoff in 22 minutes.";
-        thinkingTrace = "Gemini 3.7 Flash parsed WISMO intent. Queried simulated carrier telematics webhook for ORD-99482. Extracted GPS coordinates (47.6085, -122.3392).";
+        thinkingTrace = "AI Assistant located carrier telematics webhook for ORD-99482. Extracted live GPS coordinates (47.6085, -122.3392).";
         actionLink = { label: 'Open Live GPS Vehicle Map', view: 'gps' };
       }
       // 2. Return / Refund Query
       else if (lower.includes('return') || lower.includes('refund') || lower.includes('exchange')) {
         replyText = "With our **FlamGo Care Live Video Return**, you don't have to pack boxes or wait days for return approval. Start a 20-second live camera triage with our multimodal agent to verify barcode integrity and wear-and-tear for an instant refund!";
-        thinkingTrace = "Gemini 3.7 Flash evaluated reverse logistics triage rules. Sub-20 second optical validation workflow triggered.";
+        thinkingTrace = "AI Assistant evaluated reverse logistics triage rules. Sub-20 second optical validation workflow triggered.";
         actionLink = { label: 'Start Live Video Return Call', view: 'live-return' };
       }
       // 3. Product Discovery & Deals Query
       else {
-        // Run intent parser via Gemini 3.7 Flash service
+        // Run intent parser via retail service
         const intent = await geminiRetailService.parseShopperIntent(text);
-        thinkingTrace = `Gemini 3.7 Flash Extended Thinking (${intent.styleAesthetic || 'Modern'} aesthetic): Category ${intent.parsedCategory}, Vector Similarity Score: ${intent.vectorSimilarityScore}, BM25 Score: ${intent.bm25RankScore}.`;
+        thinkingTrace = `AI Semantic Understanding (${intent.styleAesthetic || 'Modern'} aesthetic): Category ${intent.parsedCategory}, Relevance Score: ${intent.vectorSimilarityScore}.`;
 
         // Filter products matching category or search keywords
         if (lower.includes('deal') || lower.includes('discount')) {
@@ -209,7 +209,7 @@ export const VirtualAssistant: React.FC<VirtualAssistantProps> = ({
               textTransform: 'uppercase',
               letterSpacing: '0.04em'
             }}>
-              Gemini 3.7
+              AI CONCIERGE
             </span>
             <span style={{ fontSize: '0.825rem', fontWeight: 700, color: '#0f172a' }}>
               Chat with FlamGo AI
@@ -474,7 +474,7 @@ export const VirtualAssistant: React.FC<VirtualAssistantProps> = ({
                         }}
                       >
                         <Zap size={11} />
-                        <span>{showThinking ? 'Hide Gemini 3.7 Thinking' : 'View Gemini 3.7 Reasoning Trace'}</span>
+                        <span>{showThinking ? 'Hide AI Reasoning' : 'View AI Reasoning'}</span>
                       </button>
                       {showThinking && (
                         <p style={{
@@ -606,7 +606,7 @@ export const VirtualAssistant: React.FC<VirtualAssistantProps> = ({
             {isTyping && (
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#64748b', fontSize: '0.75rem', padding: '0.25rem' }}>
                 <Sparkles size={14} className="spin" color="#2563eb" />
-                <span>Gemini 3.7 Flash thinking & analyzing catalog...</span>
+                <span>AI is analyzing the catalog...</span>
               </div>
             )}
 

@@ -144,7 +144,7 @@ export const GpsLiveTracker: React.FC<GpsLiveTrackerProps> = ({ initialOrderId =
             Live Google Maps Item Tracker
           </h1>
           <p style={{ color: '#475569', fontSize: '1rem', lineHeight: 1.6 }}>
-            Track any package in real time based on your <strong>Order ID</strong>. Integrated with the <strong>Google Maps JavaScript & Distance Matrix API</strong>, streaming real-time vehicle GPS coordinates, traffic congestion overlays, and courier telematics via Google Cloud Pub/Sub and Dataflow.
+            Track any package in real time based on your <strong>Order ID</strong>. Integrated with the <strong>Google Maps JavaScript & Distance Matrix API</strong>, streaming real-time vehicle GPS coordinates, traffic congestion overlays, and courier route updates via live delivery telemetry.
           </p>
         </div>
 

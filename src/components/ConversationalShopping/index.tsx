@@ -105,7 +105,7 @@ export const ConversationalShopping: React.FC<ConversationalShoppingProps> = ({ 
       const rev = currentRev || await getOrFetchRAGReview(product, userQ);
       // Generate grounded answer using facts and reviewer telemetry
       await new Promise(r => setTimeout(r, 240));
-      const answer = `[Gemini 3.7 RAG Grounded Answer]: Verified against ${rev.reviewerName}'s 540+ historical evaluations and GCP BigQuery review embeddings (#${product.id.toUpperCase()}-REV). ${rev.detailedAnalysis.slice(0, 260)}... All metrics verified with Double Edge Cloud Tick assurance.`;
+      const answer = `[Verified Product Insights]: Verified against ${rev.reviewerName}'s 540+ customer evaluations and verified review telemetry (#${product.id.toUpperCase()}-REV). ${rev.detailedAnalysis.slice(0, 260)}... All metrics verified with Authenticity Assurance.`;
 
       setProductQnaHistory(prev => ({
         ...prev,
@@ -180,7 +180,7 @@ export const ConversationalShopping: React.FC<ConversationalShoppingProps> = ({ 
         <div style={{ maxWidth: '880px', position: 'relative', zIndex: 2 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
             <span className="badge badge-purple" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              <Sparkles size={13} /> Challenge 1 & 2: Multimodal Intent & Hybrid ScaNN Search
+              <Sparkles size={13} /> Intelligent Multimodal & Natural Language Search
             </span>
             <span className="badge badge-green">Sub-50ms Session Personalization</span>
             <DoubleEdgeCloudBadge label="Verified User Review" sublabel="Grounded from Google" size="sm" />
@@ -191,7 +191,7 @@ export const ConversationalShopping: React.FC<ConversationalShoppingProps> = ({ 
           </h1>
           <p style={{ color: 'var(--text-muted)', fontSize: '1.05rem', marginBottom: '1.75rem', lineHeight: '1.6' }}>
             Eliminate the 31% zero-result search abandonment rate. Experience natural language intent parsing,
-            joint multimodal text-image embeddings, and real-time session basket reasoning on Google Cloud — now powered with 
+            joint image-and-text discovery, and real-time basket reasoning — now powered with 
             <strong style={{ color: '#38bdf8' }}> Product-Level RAG Review Fact Grounding </strong> 
             from the <strong style={{ color: '#6ee7b7' }}>Google Authenticity Persona</strong> with 
             <strong style={{ color: '#0f172a', background: '#f1f5f9', padding: '0.1rem 0.4rem', borderRadius: '4px' }}> Verified User Review (Black Tick) </strong> grounded from Google on review.
@@ -283,13 +283,13 @@ export const ConversationalShopping: React.FC<ConversationalShoppingProps> = ({ 
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }}></div>
               <span style={{ fontSize: '0.875rem', fontWeight: 700, color: '#fff', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                Vertex AI Agent Builder • Real-Time Intent Synthesis
+                AI Shopping Concierge • Real-Time Intent Discovery
               </span>
             </div>
             <div style={{ display: 'flex', gap: '0.75rem', fontSize: '0.75rem', flexWrap: 'wrap' }}>
-              <span className="badge badge-blue">ScaNN Vector Score: {(intentResult.vectorSimilarityScore * 100).toFixed(1)}%</span>
-              <span className="badge badge-purple">BM25 Rank: {(intentResult.bm25RankScore * 100).toFixed(1)}%</span>
-              <span className="badge badge-green">Inference: 38ms</span>
+              <span className="badge badge-blue">Semantic Match: {(intentResult.vectorSimilarityScore * 100).toFixed(1)}%</span>
+              <span className="badge badge-purple">Keyword Relevance: {(intentResult.bm25RankScore * 100).toFixed(1)}%</span>
+              <span className="badge badge-green">Response Time: 38ms</span>
             </div>
           </div>
 
@@ -312,7 +312,7 @@ export const ConversationalShopping: React.FC<ConversationalShoppingProps> = ({ 
 
           <div style={{ background: 'rgba(0,0,0,0.3)', padding: '0.85rem 1rem', borderRadius: '8px', borderLeft: '3px solid #6366f1' }}>
             <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
-              <strong style={{ color: '#fff' }}>Gemini Reasoning: </strong> {intentResult.reasoning}
+              <strong style={{ color: '#fff' }}>AI Reasoning: </strong> {intentResult.reasoning}
             </p>
           </div>
         </div>
@@ -623,7 +623,7 @@ export const ConversationalShopping: React.FC<ConversationalShoppingProps> = ({ 
         ) : (
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--text-dim)', fontSize: '0.85rem' }}>
             <Info size={16} />
-            <span>Try entering <strong>ORD-99482</strong> (Delivered) or <strong>ORD-98311</strong> (In Transit) to inspect live carrier webhooks and Gemini multimodal assistance.</span>
+            <span>Try entering <strong>ORD-99482</strong> (Delivered) or <strong>ORD-98311</strong> (In Transit) to inspect live carrier webhooks and automated order assistance.</span>
           </div>
         )}
       </div>
@@ -691,7 +691,7 @@ export const ConversationalShopping: React.FC<ConversationalShoppingProps> = ({ 
                 size="md"
               />
               <span className="badge badge-purple">
-                <Database size={13} /> Vertex AI Search RAG Index: #REV-{selectedProduct.id.toUpperCase()}
+                <Database size={13} /> Authenticity Verification Index: #REV-{selectedProduct.id.toUpperCase()}
               </span>
             </div>
 
@@ -863,7 +863,7 @@ export const ConversationalShopping: React.FC<ConversationalShoppingProps> = ({ 
                         RAG Grounded Claims Matrix
                       </span>
                       <span style={{ fontSize: '0.7rem', color: '#38bdf8' }}>
-                        Retrieved from BigQuery Embeddings
+                        Retrieved from Verified Customer Records
                       </span>
                     </div>
 
@@ -960,8 +960,8 @@ export const ConversationalShopping: React.FC<ConversationalShoppingProps> = ({ 
                 {activeModalTab === 'chat' && (
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                     <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', margin: 0 }}>
-                      Ask Gemini 3.7 anything about <strong>{selectedProduct.name}</strong>. Answers are grounded in 
-                      the Google Authenticity Persona's review dataset with Double Edge Cloud Ticks.
+                      Ask anything about <strong>{selectedProduct.name}</strong>. Answers are grounded in 
+                      verified customer reviews and product specifications.
                     </p>
 
                     {/* Quick prompts */}
